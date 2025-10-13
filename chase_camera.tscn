@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsto7cnv7jx8v"]
+
+[ext_resource type="Script" uid="uid://vbxypum1le52" path="res://chase_camera.gd" id="1_kk0d7"]
+
+[node name="ChaseCamera" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.992399, -0.123065, 0, 0.123065, 0.992399, 0, 0.768763, 2.37989)
+fov = 60.5
+script = ExtResource("1_kk0d7")

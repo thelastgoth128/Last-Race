@@ -1,3 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+.glb
+.uid
+.fxb
+.import
+.mtl
+.stl

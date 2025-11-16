@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://5kb7wuoiekjl"]
+
+[ext_resource type="PackedScene" uid="uid://byedgk884ner8" path="res://assets/cars/hatchback-sports.glb" id="1_2tph3"]
+
+[node name="hatchback-sports" instance=ExtResource("1_2tph3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

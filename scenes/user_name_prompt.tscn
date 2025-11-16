@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://blx7b6j2ha2h1"]
+
+[ext_resource type="Script" uid="uid://ckxcdhlycgxbf" path="res://user_name_prompt.gd" id="1_sp8p1"]
+[ext_resource type="Texture2D" uid="uid://bj3bbt1ddw4iq" path="res://assets/buttons/button_rectangle_depth_gloss.png" id="2_mp1pv"]
+[ext_resource type="Texture2D" uid="uid://4ehmtucety61" path="res://assets/background/Preview.png" id="2_w3x4q"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w3x4q"]
+texture = ExtResource("2_mp1pv")
+
+[sub_resource type="Theme" id="Theme_pjgyu"]
+Button/styles/normal = SubResource("StyleBoxTexture_w3x4q")
+
+[node name="UserNamePrompt" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sp8p1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109804, 0.176471, 0.207843, 1)
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.470588)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_w3x4q")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 204.0
+offset_right = 779.0
+offset_bottom = 246.0
+theme_override_font_sizes/font_size = 30
+text = "Enter your username:"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 246.0
+offset_right = 781.0
+offset_bottom = 301.0
+theme_override_font_sizes/font_size = 20
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 381.0
+offset_right = 633.0
+offset_bottom = 452.0
+theme = SubResource("Theme_pjgyu")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "CONFIRM"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_right = 299.0
+offset_bottom = 89.0
+theme_override_font_sizes/font_size = 40
+text = "THE LAST RACE"

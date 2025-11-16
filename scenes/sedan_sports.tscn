@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmfj2wd8ebxi6"]
+
+[ext_resource type="PackedScene" uid="uid://cwqd3ft8qsscs" path="res://assets/cars/sedan-sports.glb" id="1_m48y8"]
+
+[node name="sedan-sports" instance=ExtResource("1_m48y8")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)

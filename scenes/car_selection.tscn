@@ -1,0 +1,103 @@
+[gd_scene load_steps=11 format=3 uid="uid://dsspd2346pfwd"]
+
+[ext_resource type="Texture2D" uid="uid://4ehmtucety61" path="res://assets/background/Preview.png" id="1_klapw"]
+[ext_resource type="Script" uid="uid://bar85ups582sr" path="res://scripts/carousel_countainer.gd" id="2_wy018"]
+[ext_resource type="Script" uid="uid://bsjmkxdri2n3h" path="res://scripts/position_offset.gd" id="3_klapw"]
+[ext_resource type="Texture2D" uid="uid://m24p1uedvhv0" path="res://assets/buttons/arrow_basic_w_small.png" id="4_feo4y"]
+[ext_resource type="Texture2D" uid="uid://bublj7c26xchk" path="res://assets/buttons/arrow_basic_e_small.png" id="5_lrdur"]
+[ext_resource type="Texture2D" uid="uid://kgch7kjqj4gg" path="res://assets/buttons/check_square_color_checkmark.png" id="6_b6k18"]
+[ext_resource type="AudioStream" uid="uid://dfbvbgavrbrt6" path="res://Music/switch2.ogg" id="7_0v02d"]
+[ext_resource type="AudioStream" uid="uid://dhtvq406wfdq6" path="res://Music/click1.ogg" id="8_cfs20"]
+[ext_resource type="Texture2D" uid="uid://dik5s6g2obf8h" path="res://assets/buttons/green_sliderLeft.png" id="9_hhp6v"]
+[ext_resource type="Script" uid="uid://bhaaoumlpkvcd" path="res://scripts/back_button.gd" id="10_wy018"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1160.0
+offset_bottom = 652.0
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.313726)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_klapw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.705882)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CarouselContainer" type="Node2D" parent="." node_paths=PackedStringArray("position_offset_node")]
+position = Vector2(600, 327)
+script = ExtResource("2_wy018")
+spacing = 2.0
+selected_index = 2
+position_offset_node = NodePath("PositionOffset")
+
+[node name="PositionOffset" type="Control" parent="CarouselContainer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -307.5
+offset_right = -267.5
+offset_bottom = 40.0
+script = ExtResource("3_klapw")
+
+[node name="left" type="Button" parent="CarouselContainer"]
+offset_left = -270.0
+offset_top = 178.0
+offset_right = -214.0
+offset_bottom = 234.0
+icon = ExtResource("4_feo4y")
+
+[node name="right" type="Button" parent="CarouselContainer"]
+offset_left = 127.0
+offset_top = 174.0
+offset_right = 183.0
+offset_bottom = 230.0
+icon = ExtResource("5_lrdur")
+
+[node name="start_race" type="Button" parent="CarouselContainer"]
+offset_left = -97.0
+offset_top = 154.0
+offset_right = -25.0
+offset_bottom = 226.0
+icon = ExtResource("6_b6k18")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="CarouselContainer"]
+stream = ExtResource("7_0v02d")
+
+[node name="Click2Sound" type="AudioStreamPlayer" parent="CarouselContainer"]
+stream = ExtResource("8_cfs20")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 325.0
+offset_top = 28.0
+offset_right = 946.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 54
+text = "SELECT YOUR CAR"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 10.0
+offset_right = 86.0
+offset_bottom = 49.0
+icon = ExtResource("9_hhp6v")
+script = ExtResource("10_wy018")
+
+[connection signal="pressed" from="CarouselContainer/left" to="CarouselContainer/PositionOffset" method="_on_left_pressed"]
+[connection signal="pressed" from="CarouselContainer/right" to="CarouselContainer/PositionOffset" method="_on_right_pressed"]
+[connection signal="pressed" from="CarouselContainer/start_race" to="CarouselContainer/PositionOffset" method="_on_start_race_pressed"]
+[connection signal="pressed" from="BackButton" to="BackButton" method="_on_pressed"]

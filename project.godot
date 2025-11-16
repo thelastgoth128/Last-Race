@@ -11,8 +11,19 @@ config_version=5
 [application]
 
 config/name="The Last Race"
+run/main_scene="uid://sf82egqe7rpm"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/car_selector.gd"
+SignalBus="*res://scripts/SignalBus.gd"
+Music="*res://scenes/music.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 
@@ -46,6 +57,11 @@ change_camera={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

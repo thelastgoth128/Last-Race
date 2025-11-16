@@ -1,0 +1,108 @@
+[gd_scene load_steps=35 format=3 uid="uid://dpgbjxl4fs3j1"]
+
+[ext_resource type="PackedScene" uid="uid://dmpim7rqy7hhx" path="res://road_straight_long_bump.tscn" id="1_6e3qa"]
+[ext_resource type="PackedScene" uid="uid://cmv13jrpwyv5r" path="res://road_start.tscn" id="2_k6t24"]
+[ext_resource type="PackedScene" uid="uid://cts7tilyaikdy" path="res://road_start_positions.tscn" id="3_d6bvg"]
+[ext_resource type="PackedScene" uid="uid://vle4boyrdqv1" path="res://road_corner_bridge_large.tscn" id="4_7ivye"]
+[ext_resource type="PackedScene" uid="uid://d2s6g7p65r8lt" path="res://road_corner_large_border.tscn" id="5_vra4g"]
+[ext_resource type="PackedScene" uid="uid://b1w2p836t5kfd" path="res://road_corner_bridge_larger.tscn" id="6_xlp04"]
+[ext_resource type="PackedScene" uid="uid://d0mgkqvaq7fsv" path="res://road_corner_large.tscn" id="7_341ea"]
+[ext_resource type="PackedScene" uid="uid://b1gcqtr52y15" path="res://road_straight_skew.tscn" id="9_w18sb"]
+[ext_resource type="PackedScene" uid="uid://csa0i543x8kn0" path="res://road_straight_long.tscn" id="10_8mo23"]
+[ext_resource type="PackedScene" uid="uid://iqg8dlfjd1l5" path="res://road_straight_arrow.tscn" id="11_hkurt"]
+[ext_resource type="PackedScene" uid="uid://1ndmyjg87hds" path="res://road_ramp_long.tscn" id="12_gjn3x"]
+[ext_resource type="PackedScene" uid="uid://bd67ifr1yhc2b" path="res://road_ramp_long_curved.tscn" id="13_sxt1b"]
+[ext_resource type="PackedScene" uid="uid://ca2y2gl2da03p" path="res://road_straight.tscn" id="14_sxt1b"]
+[ext_resource type="PackedScene" uid="uid://fgoj5dn0oo06" path="res://road_ramp.tscn" id="15_wxgha"]
+[ext_resource type="PackedScene" uid="uid://bp0ewj0s1r8mg" path="res://road_pit_straight.tscn" id="16_g5a20"]
+[ext_resource type="PackedScene" uid="uid://cx4yjwvupfwev" path="res://road_curved.tscn" id="17_38uyi"]
+[ext_resource type="PackedScene" uid="uid://dt8v1asogxcxk" path="res://road_bump.tscn" id="18_jygf0"]
+[ext_resource type="PackedScene" uid="uid://dhp74lsqg32c7" path="res://road_pit_entry.tscn" id="19_g5a20"]
+[ext_resource type="PackedScene" uid="uid://7iy3pwtc5auq" path="res://road_curved_split.tscn" id="20_38uyi"]
+[ext_resource type="PackedScene" uid="uid://dvciv5chrk3qv" path="res://road_corner_larger.tscn" id="22_ryv5w"]
+[ext_resource type="PackedScene" uid="uid://d4nirqa3v4ymo" path="res://road_corner_bridge_small.tscn" id="23_glg8d"]
+[ext_resource type="PackedScene" uid="uid://bbll4nw6dqid7" path="res://grand_stand_round.tscn" id="24_6r5al"]
+[ext_resource type="PackedScene" uid="uid://djll3pbipwvsh" path="res://light_red.tscn" id="25_515i1"]
+[ext_resource type="PackedScene" uid="uid://bkrofbkag3xej" path="res://pits_office_corner.tscn" id="26_t54wm"]
+[ext_resource type="PackedScene" uid="uid://fln4hip41nht" path="res://radar_equipment.tscn" id="29_vbmue"]
+[ext_resource type="PackedScene" uid="uid://7td5bwft57xk" path="res://road_corner_larger_border_inner.tscn" id="30_edjiw"]
+[ext_resource type="PackedScene" uid="uid://blup585fjiaoy" path="res://road_corner_larger_sand.tscn" id="31_jlbcp"]
+[ext_resource type="PackedScene" uid="uid://bgh8qto4qxrgu" path="res://road_corner_larger_sand_inner.tscn" id="32_fwdeo"]
+[ext_resource type="PackedScene" uid="uid://b6cefgr8lfscs" path="res://road_corner_larger_wall.tscn" id="33_5btgn"]
+[ext_resource type="PackedScene" uid="uid://cn4ixutooly8a" path="res://road_corner_larger_wall_inner.tscn" id="34_3ffb2"]
+[ext_resource type="PackedScene" uid="uid://cg8ycqx1u70rl" path="res://road_straight_long_mid.tscn" id="34_b7lvl"]
+[ext_resource type="PackedScene" uid="uid://cgbcj46jwr7nr" path="res://road_corner_large_border_inner.tscn" id="35_28mub"]
+[ext_resource type="PackedScene" uid="uid://cpg63yovl713i" path="res://road_straight_long_bump_round.tscn" id="35_pv6v3"]
+[ext_resource type="PackedScene" uid="uid://j7a7k34sia0" path="res://road_corner_large_wall_inner.tscn" id="36_5e66j"]
+
+[node name="Tiles" type="Node3D"]
+
+[node name="roadStart" parent="." instance=ExtResource("2_k6t24")]
+
+[node name="roadStartPositions" parent="." instance=ExtResource("3_d6bvg")]
+
+[node name="roadStraightLongBump" parent="." instance=ExtResource("1_6e3qa")]
+
+[node name="roadCornerLargeBorder" parent="." instance=ExtResource("5_vra4g")]
+
+[node name="roadCornerBridgeLarger" parent="." instance=ExtResource("6_xlp04")]
+
+[node name="roadCornerLarge" parent="." instance=ExtResource("7_341ea")]
+
+[node name="roadStraightSkew" parent="." instance=ExtResource("9_w18sb")]
+
+[node name="roadStraightLong" parent="." instance=ExtResource("10_8mo23")]
+
+[node name="roadStraightArrow" parent="." instance=ExtResource("11_hkurt")]
+
+[node name="roadRampLongCurved" parent="." instance=ExtResource("13_sxt1b")]
+
+[node name="roadStraight" parent="." instance=ExtResource("14_sxt1b")]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, -30.253, -87.1195)
+
+[node name="roadRamp" parent="." instance=ExtResource("15_wxgha")]
+
+[node name="roadPitStraight" parent="." instance=ExtResource("16_g5a20")]
+
+[node name="roadCurved" parent="." instance=ExtResource("17_38uyi")]
+
+[node name="roadBump" parent="." instance=ExtResource("18_jygf0")]
+
+[node name="roadCornerBridgeLarge" parent="." instance=ExtResource("4_7ivye")]
+
+[node name="roadPitEntry" parent="." instance=ExtResource("19_g5a20")]
+
+[node name="roadCurvedSplit" parent="." instance=ExtResource("20_38uyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.2291, 86.3669)
+
+[node name="roadCornerLarger" parent="." instance=ExtResource("22_ryv5w")]
+
+[node name="roadCornerBridgeSmall" parent="." instance=ExtResource("23_glg8d")]
+
+[node name="grandStandRound" parent="." instance=ExtResource("24_6r5al")]
+
+[node name="lightRed" parent="." instance=ExtResource("25_515i1")]
+
+[node name="pitsOfficeCorner" parent="." instance=ExtResource("26_t54wm")]
+
+[node name="radarEquipment" parent="." instance=ExtResource("29_vbmue")]
+
+[node name="roadCornerLargerBorderInner" parent="." instance=ExtResource("30_edjiw")]
+
+[node name="roadCornerLargerSand" parent="." instance=ExtResource("31_jlbcp")]
+
+[node name="roadCornerLargerSandInner" parent="." instance=ExtResource("32_fwdeo")]
+
+[node name="roadCornerLargerWall" parent="." instance=ExtResource("33_5btgn")]
+
+[node name="roadCornerLargerWallInner" parent="." instance=ExtResource("34_3ffb2")]
+
+[node name="roadCornerLargeBorderInner" parent="." instance=ExtResource("35_28mub")]
+
+[node name="roadCornerLargeWallInner" parent="." instance=ExtResource("36_5e66j")]
+
+[node name="roadRampLong" parent="." instance=ExtResource("12_gjn3x")]
+
+[node name="roadStraightLongMid" parent="." instance=ExtResource("34_b7lvl")]
+
+[node name="roadStraightLongBumpRound" parent="." instance=ExtResource("35_pv6v3")]

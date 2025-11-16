@@ -1,0 +1,510 @@
+[gd_scene load_steps=12 format=3 uid="uid://gwd2k5sbn1ud"]
+
+[ext_resource type="MeshLibrary" uid="uid://fvqaie5t56bi" path="res://road_structure/tiles.tres" id="1_j1h8l"]
+[ext_resource type="PackedScene" uid="uid://7613a0j5xfdb" path="res://assets/racing/Models/GLTF format/fenceStraight.glb" id="2_5edcc"]
+[ext_resource type="PackedScene" uid="uid://beoh3pvfrxf3r" path="res://assets/racing/Models/GLTF format/grass.glb" id="3_5edcc"]
+[ext_resource type="PackedScene" uid="uid://cjmgurssy72e8" path="res://assets/roads/Models/GLB format/road-bend-barrier.glb" id="4_epjh3"]
+[ext_resource type="PackedScene" uid="uid://d2jyue08ok7h2" path="res://assets/trackgrid_fences/building-type-b.glb" id="5_60ssv"]
+[ext_resource type="PackedScene" uid="uid://g1og1gktr1ns" path="res://assets/trackgrid_fences/building-type-c.glb" id="6_dj7j0"]
+[ext_resource type="PackedScene" uid="uid://bvtlnwid2lbbp" path="res://assets/trackgrid_fences/building-type-d.glb" id="7_5hvi7"]
+[ext_resource type="PackedScene" uid="uid://be7e8yotr1n04" path="res://assets/trackgrid_fences/building-type-f.glb" id="8_dy2em"]
+[ext_resource type="PackedScene" uid="uid://cb4wwdh78nhe1" path="res://assets/racing/Models/GLTF format/grandStandCoveredRound.glb" id="9_06ito"]
+[ext_resource type="PackedScene" uid="uid://dif13l5vwumiy" path="res://assets/roads/Models/GLB format/road-bend-square-barrier.glb" id="10_b4gbj"]
+[ext_resource type="PackedScene" uid="uid://dnvvyrkictewi" path="res://assets/roads/Models/GLB format/road-curve-barrier.glb" id="11_w6gxt"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="TrackGrid" type="GridMap" parent="." groups=["track"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh_library = ExtResource("1_j1h8l")
+cell_size = Vector3(20, 2, 20)
+data = {
+"cells": PackedInt32Array(0, 65532, 13, 0, 65531, 13, 65535, 65528, 17, 65535, 65529, 14, 65515, 4, 12, 65515, 5, 12, 65515, 6, 12, 65515, 7, 12, 65515, 8, 12, 65515, 12, 3, 65515, 17, 8, 65516, 18, 21, 65517, 18, 14, 65518, 18, 14, 65519, 18, 14, 65524, 25, 3, 65526, 27, 6, 65531, 27, 14, 65532, 27, 14, 1, 24, 20, 0, 24, 9, 0, 23, 9, 0, 22, 9, 0, 21, 9, 0, 20, 9, 0, 19, 9, 0, 18, 9, 0, 10, 9, 0, 9, 9, 0, 8, 9, 0, 7, 9, 0, 6, 8, 0, 4, 9, 65535, 65531, 23, 65526, 15, 23, 65535, 9, 23, 65524, 65526, 30, 65517, 12, 30, 1, 65528, 22, 65524, 16, 22, 65534, 65529, 16, 65525, 65529, 16, 65527, 65529, 16, 65532, 65529, 14, 65531, 65529, 18, 65529, 65529, 14, 65528, 65529, 14, 65529, 65528, 14, 65528, 65528, 14, 65527, 65528, 16, 65522, 65529, 16, 65523, 65529, 14, 65525, 65528, 16, 65523, 65528, 14, 65522, 65528, 16, 131063, 65528, 23, 131059, 65528, 23, 65518, 65528, 19, 65516, 65530, 4, 65515, 65530, 5, 65517, 65532, 24, 65515, 65531, 12, 65515, 65532, 12, 65515, 65533, 12, 65515, 65534, 12, 65515, 2, 3, 65515, 3, 12, 65515, 14, 12, 65515, 15, 12, 65515, 13, 12, 65523, 17, 17, 65521, 18, 16, 65523, 18, 38, 65524, 21, 39, 65528, 27, 38, 65530, 27, 38, 65534, 27, 38, 0, 17, 9, 65532, 17, 24, 0, 16, 9, 0, 15, 9, 0, 11, 9, 0, 12, 9, 0, 1, 2, 0, 3, 0, 0, 2, 9, 0, 13, 9, 0, 14, 9, 0, 65533, 13, 0, 65535, 1)
+}
+metadata/_editor_floor_ = Vector3(0, -20, 0)
+
+[node name="fenceStraight" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 24, 0, -56)
+
+[node name="fenceStraight36" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 24, 0, 52)
+
+[node name="fenceStraight37" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 47, 0, 52)
+
+[node name="fenceStraight38" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 81)
+
+[node name="fenceStraight56" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 81)
+
+[node name="fenceStraight93" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, 81)
+
+[node name="fenceStraight94" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, 103)
+
+[node name="fenceStraight95" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, 125)
+
+[node name="fenceStraight96" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, 148)
+
+[node name="fenceStraight97" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, 170)
+
+[node name="fenceStraight113" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, 261)
+
+[node name="fenceStraight114" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, 283)
+
+[node name="fenceStraight118" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, 283)
+
+[node name="fenceStraight119" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, 305)
+
+[node name="fenceStraight120" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, 327)
+
+[node name="fenceStraight121" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, 261)
+
+[node name="fenceStraight115" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, 305)
+
+[node name="fenceStraight116" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, 326)
+
+[node name="fenceStraight117" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, 347)
+
+[node name="fenceStraight98" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, 170)
+
+[node name="fenceStraight99" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, 148)
+
+[node name="fenceStraight100" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, 126)
+
+[node name="fenceStraight101" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, 103)
+
+[node name="fenceStraight102" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, 82)
+
+[node name="fenceStraight103" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, 60)
+
+[node name="fenceStraight104" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, -31)
+
+[node name="fenceStraight105" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, -52)
+
+[node name="fenceStraight106" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, -74)
+
+[node name="fenceStraight107" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -379, 0, -97)
+
+[node name="fenceStraight108" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, -97)
+
+[node name="fenceStraight109" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, -75)
+
+[node name="fenceStraight110" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, -52)
+
+[node name="fenceStraight111" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, -29)
+
+[node name="fenceStraight112" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -395, 0, 57)
+
+[node name="fenceStraight57" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 105)
+
+[node name="fenceStraight58" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 128)
+
+[node name="fenceStraight59" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 151)
+
+[node name="fenceStraight60" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 175)
+
+[node name="fenceStraight61" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 199)
+
+[node name="fenceStraight62" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 223)
+
+[node name="fenceStraight63" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 248)
+
+[node name="fenceStraight64" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 270)
+
+[node name="fenceStraight65" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 300)
+
+[node name="fenceStraight66" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 327)
+
+[node name="fenceStraight67" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 351)
+
+[node name="fenceStraight68" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 375)
+
+[node name="fenceStraight69" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 400)
+
+[node name="fenceStraight70" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 425)
+
+[node name="fenceStraight71" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 452)
+
+[node name="fenceStraight72" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 25, 0, 478)
+
+[node name="fenceStraight122" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -27, 0, 541)
+
+[node name="fenceStraight123" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -27, 0, 561)
+
+[node name="fenceStraight124" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -50, 0, 561)
+
+[node name="fenceStraight125" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -73, 0, 561)
+
+[node name="fenceStraight126" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -95, 0, 561)
+
+[node name="fenceStraight127" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -117, 0, 561)
+
+[node name="fenceStraight128" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -139, 0, 561)
+
+[node name="fenceStraight129" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -161, 0, 561)
+
+[node name="fenceStraight130" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -184, 0, 561)
+
+[node name="fenceStraight131" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -184, 0, 545)
+
+[node name="fenceStraight132" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -163, 0, 545)
+
+[node name="fenceStraight133" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -141, 0, 545)
+
+[node name="fenceStraight134" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -119, 0, 545)
+
+[node name="fenceStraight135" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -95, 0, 545)
+
+[node name="fenceStraight136" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -73, 0, 545)
+
+[node name="fenceStraight137" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -50, 0, 545)
+
+[node name="fenceStraight73" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -196, 0, 478)
+
+[node name="fenceStraight74" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -283, 0, 364)
+
+[node name="fenceStraight83" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -306, 0, 364)
+
+[node name="fenceStraight84" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -329, 0, 364)
+
+[node name="fenceStraight85" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -351, 0, 364)
+
+[node name="fenceStraight86" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -373, 0, 364)
+
+[node name="fenceStraight87" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -379, 0, 381)
+
+[node name="fenceStraight88" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -357, 0, 381)
+
+[node name="fenceStraight89" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -334, 0, 381)
+
+[node name="fenceStraight90" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -312, 0, 381)
+
+[node name="fenceStraight91" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -290, 0, 381)
+
+[node name="fenceStraight92" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -265, 0, 381)
+
+[node name="fenceStraight75" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -196, 0, 430)
+
+[node name="fenceStraight76" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -216, 0, 430)
+
+[node name="fenceStraight82" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -216, 0, 407)
+
+[node name="fenceStraight77" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -260, 0, 364)
+
+[node name="fenceStraight78" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -216, 0, 483)
+
+[node name="fenceStraight79" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -216, 0, 509)
+
+[node name="fenceStraight80" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -197, 0, 506)
+
+[node name="fenceStraight81" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, -197, 0, 406)
+
+[node name="fenceStraight39" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 103)
+
+[node name="fenceStraight40" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 125)
+
+[node name="fenceStraight41" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 147)
+
+[node name="fenceStraight42" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 169)
+
+[node name="fenceStraight43" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 190)
+
+[node name="fenceStraight44" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 215)
+
+[node name="fenceStraight45" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 238)
+
+[node name="fenceStraight46" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 261)
+
+[node name="fenceStraight47" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 286)
+
+[node name="fenceStraight48" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 310)
+
+[node name="fenceStraight49" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 333)
+
+[node name="fenceStraight50" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 360)
+
+[node name="fenceStraight51" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 384)
+
+[node name="fenceStraight52" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 408)
+
+[node name="fenceStraight53" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 441)
+
+[node name="fenceStraight54" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 466)
+
+[node name="fenceStraight55" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 43, 0, 490)
+
+[node name="fenceStraight7" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -26, 0, -118)
+
+[node name="fenceStraight22" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -26, 0, -136)
+
+[node name="fenceStraight23" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -49, 0, -136)
+
+[node name="fenceStraight24" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -75, 0, -136)
+
+[node name="fenceStraight25" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(19.3185, 0, -5.17638, 0, 5, 0, 5.17638, 0, 19.3185, -98, 0, -139)
+
+[node name="fenceStraight26" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(17.3205, 0, -10, 0, 5, 0, 10, 0, 17.3205, -124, 0, -151)
+
+[node name="fenceStraight8" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -48, 0, -118)
+
+[node name="fenceStraight9" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -70, 0, -118)
+
+[node name="fenceStraight10" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -91, 0, -118)
+
+[node name="fenceStraight11" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -113, 0, -118)
+
+[node name="fenceStraight12" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -135, 0, -118)
+
+[node name="fenceStraight13" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -157, 0, -118)
+
+[node name="fenceStraight27" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -142, 0, -156)
+
+[node name="fenceStraight28" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -164, 0, -156)
+
+[node name="fenceStraight29" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -187, 0, -156)
+
+[node name="fenceStraight30" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -209, 0, -156)
+
+[node name="fenceStraight31" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -232, 0, -156)
+
+[node name="fenceStraight32" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -256, 0, -156)
+
+[node name="fenceStraight33" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -279, 0, -156)
+
+[node name="fenceStraight34" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -302, 0, -156)
+
+[node name="fenceStraight35" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -323, 0, -156)
+
+[node name="fenceStraight14" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -179, 0, -118)
+
+[node name="fenceStraight15" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -201, 0, -118)
+
+[node name="fenceStraight16" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -224, 0, -118)
+
+[node name="fenceStraight17" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -247, 0, -118)
+
+[node name="fenceStraight18" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -268, 0, -118)
+
+[node name="fenceStraight19" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -290, 0, -118)
+
+[node name="fenceStraight20" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -312, 0, -118)
+
+[node name="fenceStraight21" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 20, -331, 0, -118)
+
+[node name="fenceStraight2" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 24, 0, -76)
+
+[node name="fenceStraight5" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 42, 0, -76)
+
+[node name="fenceStraight6" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 42, 0, -56)
+
+[node name="fenceStraight3" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 24, 0, -97)
+
+[node name="fenceStraight4" parent="." instance=ExtResource("2_5edcc")]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 5, 0, -20, 0, -8.74228e-07, 42, 0, -97)
+
+[node name="grass" parent="." instance=ExtResource("3_5edcc")]
+transform = Transform3D(800, 0, 0, 0, 800, 0, 0, 0, 800, -240, 6, 1123)
+
+[node name="road-bend-barrier2" parent="." instance=ExtResource("4_epjh3")]
+transform = Transform3D(-19.3185, 0, -5.17638, 0, 20, 0, 5.17638, 0, -19.3185, -399, 0, 360)
+
+[node name="building-type-b2" parent="." instance=ExtResource("5_60ssv")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -57, 0, 0)
+
+[node name="building-type-c2" parent="." instance=ExtResource("6_dj7j0")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -362, 0, 0)
+
+[node name="building-type-c7" parent="." instance=ExtResource("6_dj7j0")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -353, 0, 170)
+
+[node name="building-type-c4" parent="." instance=ExtResource("6_dj7j0")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -362, 0, 70)
+
+[node name="building-type-c5" parent="." instance=ExtResource("6_dj7j0")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -290, 0, 236)
+
+[node name="building-type-c6" parent="." instance=ExtResource("6_dj7j0")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -192, 0, 236)
+
+[node name="building-type-c3" parent="." instance=ExtResource("6_dj7j0")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -263, 0, -86)
+
+[node name="building-type-d2" parent="." instance=ExtResource("7_5hvi7")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -42, 0, 109)
+
+[node name="building-type-d3" parent="." instance=ExtResource("7_5hvi7")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -42, 0, 184)
+
+[node name="building-type-d4" parent="." instance=ExtResource("7_5hvi7")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -42, 0, 284)
+
+[node name="building-type-d5" parent="." instance=ExtResource("7_5hvi7")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 65, 0, 284)
+
+[node name="building-type-d6" parent="." instance=ExtResource("7_5hvi7")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 65, 0, 362)
+
+[node name="building-type-f2" parent="." instance=ExtResource("8_dy2em")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -172, 0, 0)
+
+[node name="building-type-f3" parent="." instance=ExtResource("8_dy2em")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 80, 0, 0)
+
+[node name="building-type-f4" parent="." instance=ExtResource("8_dy2em")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 80, 0, 130)
+
+[node name="grandStandCoveredRound" parent="." instance=ExtResource("9_06ito")]
+transform = Transform3D(5.17638, 0, -19.3185, 0, 20, 0, 19.3185, 0, 5.17638, 3, 1, 581)
+
+[node name="road-bend-square-barrier2" parent="." instance=ExtResource("10_b4gbj")]
+transform = Transform3D(-20, 0, -1.74846e-06, 0, 20, 0, 1.74846e-06, 0, -20, -381, 0, 341)
+
+[node name="road-curve-barrier2" parent="." instance=ExtResource("11_w6gxt")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -228, 0, 368)
+
+[node name="road-curve-barrier5" parent="." instance=ExtResource("11_w6gxt")]
+transform = Transform3D(-20, 0, -1.74846e-06, 0, 20, 0, 1.74846e-06, 0, -20, -211, 0, 529)
+
+[node name="road-curve-barrier6" parent="." instance=ExtResource("11_w6gxt")]
+transform = Transform3D(-20, 0, -1.74846e-06, 0, 20, 0, 1.74846e-06, 0, -20, -211, 0, 529)
+
+[node name="road-curve-barrier7" parent="." instance=ExtResource("11_w6gxt")]
+transform = Transform3D(-8.74228e-07, 0, -20, 0, 20, 0, 20, 0, -8.74228e-07, 6, 0, 523)
+
+[node name="road-curve-barrier3" parent="." instance=ExtResource("11_w6gxt")]
+transform = Transform3D(5.17638, 0, 19.3185, 0, 20, 0, -19.3185, 0, 5.17638, -375, 0, -147)
+
+[node name="road-curve-barrier4" parent="." instance=ExtResource("11_w6gxt")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 10, 0, -128)

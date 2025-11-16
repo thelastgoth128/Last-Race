@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqh0k0myeqerq"]
+
+[ext_resource type="Script" uid="uid://drhc63dnfepgw" path="res://ai_scene.gd" id="1_rca5y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_agmqv"]
+size = Vector3(18, 1.8, 18)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_rca5y")
+
+[node name="Truck1Spot" type="Area3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17, 0, -59)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Truck1Spot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_agmqv")
+
+[node name="Sedan1" type="Area3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -26, 0, -69)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sedan1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_agmqv")
+
+[node name="policeAI" type="Area3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -22, 0, -71)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="policeAI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_agmqv")

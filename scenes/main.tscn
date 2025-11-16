@@ -1,0 +1,417 @@
+[gd_scene load_steps=30 format=3 uid="uid://ck10obr3dcen0"]
+
+[ext_resource type="Script" uid="uid://dlngw1avr63c1" path="res://scripts/game.gd" id="1_y6deb"]
+[ext_resource type="PackedScene" uid="uid://dsto7cnv7jx8v" path="res://scenes/chase_camera.tscn" id="2_og1vs"]
+[ext_resource type="Script" path="res://scripts/game_interface.gd" id="4_vxglm"]
+[ext_resource type="Script" path="res://scripts/panel.gd" id="5_2f3dj"]
+[ext_resource type="Script" path="res://scripts/laps.gd" id="6_yq6so"]
+[ext_resource type="AudioStream" uid="uid://4f833xy41471" path="res://Music/switch-b.ogg" id="7_fv21b"]
+[ext_resource type="Script" path="res://scripts/gameover.gd" id="8_tel4y"]
+[ext_resource type="Texture2D" uid="uid://bjqjn3mats10i" path="res://assets/buttons/grey_panel.png" id="9_qkpxi"]
+[ext_resource type="Texture2D" uid="uid://t8sshqxjt813" path="res://assets/buttons/icon_repeat_light.png" id="10_5q0nq"]
+[ext_resource type="Script" path="res://scripts/retry.gd" id="11_dgi5k"]
+[ext_resource type="Script" path="res://scripts/speed.gd" id="12_j8jky"]
+[ext_resource type="Texture2D" uid="uid://cxn07ps3c4o7s" path="res://assets/buttons/icon_pedal.png" id="13_kmb1v"]
+[ext_resource type="Script" uid="uid://dnophi767gknr" path="res://scripts/acceralation.gd" id="14_fuf3a"]
+[ext_resource type="Texture2D" uid="uid://gfk46dxi7gux" path="res://assets/buttons/icon_pedal_brake.png" id="15_pibwh"]
+[ext_resource type="Script" uid="uid://bnpwfc22mwpcr" path="res://scripts/brake.gd" id="16_c6pm6"]
+[ext_resource type="Texture2D" uid="uid://c1trflsdv2a6m" path="res://assets/buttons/icon_pause.png" id="17_5he1u"]
+[ext_resource type="Script" path="res://scripts/pause.gd" id="18_5poiv"]
+[ext_resource type="Script" path="res://scripts/race_positions.gd" id="19_2cjbq"]
+[ext_resource type="Script" uid="uid://bjemtaoevjqd" path="res://scenes/virtual_joystic.gd" id="20_chjal"]
+[ext_resource type="Texture2D" uid="uid://pk3t86ur304c" path="res://assets/buttons/joystick_circle_nub_a.png" id="21_cjqg0"]
+[ext_resource type="Texture2D" uid="uid://gr6ngwk18gqv" path="res://assets/buttons/joystick_circle_nub_highlight.png" id="22_vchkt"]
+[ext_resource type="Texture2D" uid="uid://ci45mrejiyvci" path="res://assets/buttons/input_rectangle.png" id="23_txyw0"]
+[ext_resource type="AudioStream" uid="uid://wpq72awfysim" path="res://Music/tap-a.ogg" id="24_vc5cj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xuqvo"]
+texture = ExtResource("23_txyw0")
+
+[sub_resource type="Theme" id="Theme_qsp4k"]
+Button/styles/normal = SubResource("StyleBoxTexture_xuqvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kq58d"]
+texture = ExtResource("23_txyw0")
+
+[sub_resource type="Theme" id="Theme_seu75"]
+Button/styles/normal = SubResource("StyleBoxTexture_kq58d")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_htxhm"]
+texture = ExtResource("23_txyw0")
+
+[sub_resource type="Theme" id="Theme_jq2sk"]
+Button/styles/normal = SubResource("StyleBoxTexture_htxhm")
+
+[node name="Main" type="Node"]
+script = ExtResource("1_y6deb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0430091, 0.999075, 0, -0.999075, 0.0430091, 0, 0, 0)
+shadow_enabled = true
+
+[node name="ChaseCamera" parent="." instance=ExtResource("2_og1vs")]
+
+[node name="GameInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1147.0
+offset_bottom = 652.0
+script = ExtResource("4_vxglm")
+
+[node name="Panel" type="Panel" parent="GameInterface"]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 57.0
+offset_right = 651.0
+offset_bottom = 97.0
+script = ExtResource("5_2f3dj")
+
+[node name="Minutes" type="Label" parent="GameInterface/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 13.0
+offset_right = 60.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0.937255, 0.968627, 0, 1)
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Seconds" type="Label" parent="GameInterface/Panel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 13.0
+offset_right = 90.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0.933333, 0.945098, 0, 1)
+text = "00."
+horizontal_alignment = 2
+
+[node name="Msecs" type="Label" parent="GameInterface/Panel"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 13.0
+offset_right = 123.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(1, 0.960784, 0, 1)
+text = "000"
+horizontal_alignment = 2
+
+[node name="Panel2" type="Panel" parent="GameInterface"]
+layout_mode = 0
+offset_left = 839.0
+offset_top = 41.0
+offset_right = 1059.0
+offset_bottom = 112.0
+
+[node name="Laps" type="Label" parent="GameInterface/Panel2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -209.0
+offset_top = 9.0
+offset_right = 3.0
+offset_bottom = 64.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+text = "Lap 1/3"
+script = ExtResource("6_yq6so")
+
+[node name="CountdownLabel" type="Label" parent="GameInterface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -325.0
+offset_right = 575.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 120
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownSound" type="AudioStreamPlayer" parent="GameInterface"]
+stream = ExtResource("7_fv21b")
+
+[node name="Gameover" type="Label" parent="GameInterface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.5
+offset_top = -323.5
+offset_right = 574.5
+offset_bottom = 323.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+script = ExtResource("8_tel4y")
+
+[node name="TextureRect" type="TextureRect" parent="GameInterface/Gameover"]
+modulate = Color(1, 1, 1, 0.164706)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_qkpxi")
+
+[node name="ColorRect" type="ColorRect" parent="GameInterface/Gameover"]
+modulate = Color(1, 1, 1, 0.513726)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109804, 0.176471, 0.207843, 1)
+
+[node name="Title" type="Label" parent="GameInterface/Gameover"]
+layout_mode = 0
+offset_right = 332.0
+offset_bottom = 129.0
+theme_override_font_sizes/font_size = 40
+text = "THE LAST RACE"
+
+[node name="Gameover" type="Label" parent="GameInterface/Gameover"]
+layout_mode = 0
+offset_left = 366.0
+offset_top = 57.5
+offset_right = 865.0
+offset_bottom = 207.5
+theme_override_font_sizes/font_size = 60
+text = "GAME OVER"
+
+[node name="Position" type="Label" parent="GameInterface/Gameover"]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 227.5
+offset_right = 535.0
+offset_bottom = 282.5
+theme_override_font_sizes/font_size = 40
+text = "Position: "
+
+[node name="TimeElapsed" type="Label" parent="GameInterface/Gameover"]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 303.5
+offset_right = 624.0
+offset_bottom = 358.5
+theme_override_font_sizes/font_size = 40
+text = "Time Elapsed:"
+
+[node name="Retry" type="Button" parent="GameInterface/Gameover"]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 447.5
+offset_right = 478.0
+offset_bottom = 541.5
+theme_override_font_sizes/font_size = 32
+icon = ExtResource("10_5q0nq")
+script = ExtResource("11_dgi5k")
+
+[node name="ReturnMenu" type="Button" parent="GameInterface/Gameover"]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 440.0
+offset_right = 755.0
+offset_bottom = 538.0
+theme_override_font_sizes/font_size = 32
+text = "Return to Main Menu"
+script = ExtResource("11_dgi5k")
+
+[node name="Speed" type="Label" parent="GameInterface"]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 488.0
+offset_right = 781.0
+offset_bottom = 590.0
+theme_override_font_sizes/font_size = 40
+text = "0 Km/h"
+script = ExtResource("12_j8jky")
+
+[node name="Acceralation" type="Button" parent="GameInterface"]
+layout_mode = 0
+offset_left = 982.0
+offset_top = 497.0
+offset_right = 1086.0
+offset_bottom = 601.0
+toggle_mode = true
+icon = ExtResource("13_kmb1v")
+script = ExtResource("14_fuf3a")
+
+[node name="Brake" type="Button" parent="GameInterface"]
+layout_mode = 0
+offset_left = 847.0
+offset_top = 498.0
+offset_right = 951.0
+offset_bottom = 602.0
+icon = ExtResource("15_pibwh")
+script = ExtResource("16_c6pm6")
+
+[node name="Pause" type="Button" parent="GameInterface"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 79.0
+icon = ExtResource("17_5he1u")
+script = ExtResource("18_5poiv")
+
+[node name="Panel3" type="Panel" parent="GameInterface"]
+layout_mode = 0
+offset_top = 75.0
+offset_right = 238.0
+offset_bottom = 250.0
+
+[node name="RacePositions" type="Label" parent="GameInterface"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 84.0
+offset_right = 227.0
+offset_bottom = 323.0
+theme_override_font_sizes/font_size = 24
+text = "1.Sedan
+2.CharacterBody3D
+3.AICar
+4.Player"
+script = ExtResource("19_2cjbq")
+
+[node name="VirtualJoystic" type="Control" parent="GameInterface"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -261.0
+offset_right = 262.0
+offset_bottom = -47.0
+grow_vertical = 0
+script = ExtResource("20_chjal")
+
+[node name="JoystickBase" type="TextureRect" parent="GameInterface/VirtualJoystic"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.5
+offset_top = -90.5
+offset_right = 32.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("21_cjqg0")
+
+[node name="JoystickKnob" type="TextureRect" parent="GameInterface/VirtualJoystic"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -39.5
+offset_right = 19.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("22_vchkt")
+
+[node name="GamePaused" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 638.0
+
+[node name="ColorRect" type="ColorRect" parent="GamePaused"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109804, 0.207843, 0.176471, 1)
+
+[node name="OnPause" type="Panel" parent="GamePaused"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.5
+offset_top = -183.5
+offset_right = 190.5
+offset_bottom = 183.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="GamePaused/OnPause"]
+process_mode = 2
+layout_mode = 0
+offset_left = -4.0
+offset_top = -6.0
+offset_right = 387.0
+offset_bottom = 117.0
+theme = SubResource("Theme_qsp4k")
+theme_override_colors/font_color = Color(0, 0.85098, 0, 1)
+theme_override_font_sizes/font_size = 54
+text = "RESUME"
+
+[node name="Restart" type="Button" parent="GamePaused/OnPause"]
+process_mode = 2
+layout_mode = 0
+offset_left = -2.0
+offset_top = 119.0
+offset_right = 379.0
+offset_bottom = 239.0
+theme = SubResource("Theme_seu75")
+theme_override_colors/font_color = Color(0, 0.909804, 0, 1)
+theme_override_font_sizes/font_size = 54
+text = "RESTART"
+
+[node name="Quit" type="Button" parent="GamePaused/OnPause"]
+process_mode = 2
+layout_mode = 0
+offset_left = -4.0
+offset_top = 246.0
+offset_right = 377.0
+offset_bottom = 374.0
+theme = SubResource("Theme_jq2sk")
+theme_override_colors/font_color = Color(0.027451, 0.886275, 0, 1)
+theme_override_font_sizes/font_size = 54
+text = "QUIT"
+
+[node name="Click2Sound" type="AudioStreamPlayer" parent="GamePaused/OnPause"]
+stream = ExtResource("24_vc5cj")
+
+[node name="Label" type="Label" parent="GamePaused"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 54
+text = "GAME PAUSED"
+
+[connection signal="pressed" from="GameInterface/Gameover/Retry" to="GameInterface/Gameover/Retry" method="_on_pressed"]
+[connection signal="pressed" from="GameInterface/Gameover/ReturnMenu" to="GameInterface/Gameover/ReturnMenu" method="_on_pressed"]
+[connection signal="pressed" from="GameInterface/Pause" to="GameInterface" method="_on_pause_pressed"]
+[connection signal="pressed" from="GameInterface/Pause" to="GameInterface/Pause" method="_on_pressed"]
+[connection signal="pressed" from="GamePaused/OnPause/Resume" to="GameInterface/Pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="GamePaused/OnPause/Restart" to="GameInterface/Pause" method="_on_restart_pressed"]

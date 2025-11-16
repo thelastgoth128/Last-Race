@@ -1,0 +1,241 @@
+[gd_scene load_steps=25 format=3 uid="uid://gdeb1r58f083"]
+
+[ext_resource type="PackedScene" uid="uid://c6pdwmjsrr7ep" path="res://assets/roads/road.tscn" id="1_ht7c6"]
+[ext_resource type="Script" uid="uid://cpk6obmvrohwk" path="res://scripts/ai_scene.gd" id="2_5hw7b"]
+[ext_resource type="Script" uid="uid://bp5ioofsgmylp" path="res://scripts/branch_point.gd" id="4_banxg"]
+[ext_resource type="Script" path="res://scripts/branch_stop.gd" id="4_w7ixh"]
+[ext_resource type="Script" path="res://scripts/race_manager1.gd" id="5_w7ixh"]
+[ext_resource type="Script" path="res://scripts/finish_line.gd" id="6_4c6gc"]
+[ext_resource type="Script" path="res://scripts/checkpoints.gd" id="7_3pumb"]
+[ext_resource type="PackedScene" uid="uid://cqh0k0myeqerq" path="res://scenes/ai_scene2.tscn" id="7_ncy53"]
+[ext_resource type="PackedScene" uid="uid://y1r6pvtk60yk" path="res://scenes/rain.tscn" id="8_davg4"]
+
+[sub_resource type="Curve3D" id="Curve3D_lpn3u"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -20.2897, 0, -47.3427, 0, 0, 0, 0, 0, 0, -20, 0, -82.512, 0, 0, 0, 0, 0, 0, -20, 0, -112.27, 0, 0, 0, 0, 0, 0, -20, 0, -133, 0, 0, 0, 0, 0, 0, -20, 0, -156, 0, 0, 0, 0, 0, 0, -20, 0, -175, 0, 0, 0, 0, 0, 0, -20, 0, -193, 0, 0, 0, 0, 0, 0, -20, 0, -210, 0, 0, 0, 0, 0, 0, -20, 0, -223, 0, 0, 0, 0, 0, 0, -20, 0, -234, 0, 0, 0, 0, 0, 0, -21, 0, -244, 0, 0, 0, 0, 0, 0, -27.793, 0, -254.427, 0, 0, 0, 0, 0, 0, -42, 0, -256, 0, 0, 0, 0, 0, 0, -57, 0, -261, 0, 0, 0, 0, 0, 0, -77, 0, -259, 0, 0, 0, 0, 0, 0, -104.834, 0, -259.568, 0, 0, 0, 0, 0, 0, -137.761, 0, -259.568, 0, 0, 0, 0, 0, 0, -152.12, 0, -259.568, 0, 0, 0, 0, 0, 0, -162.516, 0, -259.568, 0, 0, 0, 0, 0, 0, -182.634, 0, -259.568, 0, 0, 0, 0, 0, 0, -196.993, 0, -259.568, 0, 0, 0, 0, 0, 0, -211.958, 0, -259.568, 0, 0, 0, 0, 0, 0, -231.994, 0, -259.568, 0, 0, 0, 0, 0, 0, -248.149, 0, -259.568, 0, 0, 0, 0, 0, 0, -261.399, 0, -259.568, 0, 0, 0, 0, 0, 0, -273.278, 0, -259.568, 0, 0, 0, 0, 0, 0, -284.289, 0, -259.568, 0, 0, 0, 0, 0, 0, -297.509, 0, -259.568, 0, 0, 0, 0, 0, 0, -315.419, 0, -259.568, 0, 0, 0, 0, 0, 0, -333, 0, -260, 0, 0, 0, 0, 0, 0, -347, 0, -258, 0, 0, 0, 0, 0, 0, -356, 0, -248, 0, 0, 0, 0, 0, 0, -184.429, 0, 19.2955, 0, 0, 0, 0, 0, 0, -173.699, 0, 19.2955, 0, 0, 0, 0, 0, 0, -160.552, 0, 19.2955, 0, 0, 0, 0, 0, 0, -147.406, 0, 19.2955, 0, 0, 0, 0, 0, 0, -134.26, 0, 19.2955, 0, 0, 0, 0, 0, 0, -121.114, 0, 19.2955, 0, 0, 0, 0, 0, 0, -109.351, 0, 19.2955, 0, 0, 0, 0, 0, 0, -97.5887, 0, 19.2955, 0, 0, 0, 0, 0, 0, -83.7506, 0, 19.2955, 0, 0, 0, 0, 0, 0, -73.372, 0, 19.2955, 0, 0, 0, 0, 0, 0, -63.6852, 0, 19.2955, 0, 0, 0, 0, 0, 0, -54.2966, 0, 19.2955, 0, 0, 0, 0, 0, 0, -41.7321, 0, 18.398, 0, 0, 0, 0, 0, 0, -31, 0, 15, 0, 0, 0, 0, 0, 0, -24, 0, 9, 0, 0, 0, 0, 0, 0, -21, 0, -5, 0, 0, 0, 0, 0, 0, -19.2955, 0, -20.1929),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 49
+
+[sub_resource type="Curve3D" id="Curve3D_ebjun"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -360, 0, -247, 0, 0, 0, 0, 0, 0, -360.599, 0, -222.44, 0, 0, 0, 0, 0, 0, -356, 0, -206, 0, 0, 0, 0, 0, 0, -367.04, -0.0002563, -191.353, 0, 0, 0, 0, 0, 0, -374, 0, -178, 0, 0, 0, 0, 0, 0, -365, 0, -167, 0, 0, 0, 0, 0, 0, -360, 0, -160, 0, 0, 0, 0, 0, 0, -360, 0, -151, 0, 0, 0, 0, 0, 0, -360.151, -0.000440487, -137.733, 0, 0, 0, 0, 0, 0, -359.739, -0.00040163, -127.014, 0, 0, 0, 0, 0, 0, -359.363, -0.000366211, -117.243, 0, 0, 0, 0, 0, 0, -359.281, -0.000283674, -104.567, 0, 0, 0, 0, 0, 0, -359.217, -0.000219284, -94.6781, 0, 0, 0, 0, 0, 0, -359.119, -0.000120023, -79.4334, 0, 0, 0, 0, 0, 0, -359, 0, -61, 0, 0, 0, 0, 0, 0, -359, 0, -49, 0, 0, 0, 0, 0, 0, -360, 0, -35, 0, 0, 0, 0, 0, 0, -359, 0, -20, 0, 0, 0, 0, 0, 0, -359, 0, -4, 0, 0, 0, 0, 0, 0, -355, 0, 3, 0, 0, 0, 0, 0, 0, -355, 0, 11, 0, 0, 0, 0, 0, 0, -349, 0, 19, 0, 0, 0, 0, 0, 0, -336.961, 0, 17.5912, 0, 0, 0, 0, 0, 0, -320, 0, 18, 0, 0, 0, 0, 0, 0, -306.521, 5.87905e-05, 19.6089, 0, 0, 0, 0, 0, 0, -291, 0, 20, 0, 0, 0, 0, 0, 0, -281.355, 0, 20, 0, 0, 0, 0, 0, 0, -271, 0, 20, 0, 0, 0, 0, 0, 0, -259.634, 0.00012207, 21.3406, 0, 0, 0, 0, 0, 0, -250, 0.00012207, 20.8589, 0, 0, 0, 0, 0, 0, -233.731, 0.00012207, 20.0455, 0, 0, 0, 0, 0, 0, -224.756, 0.00012207, 20.0454, 0, 0, 0, 0, 0, 0, -213.008, 0.00012207, 20.0455, 0, 0, 0, 0, 0, 0, -199.51, 0.00012207, 19.2848, 0, 0, 0, 0, 0, 0, -188.29, 0.00012207, 19.9861, 0, 0, 0, 0, 0, 0, -171.124, 0.00012207, 18.7741, 0, 0, 0, 0, 0, 0, -156.792, 0.00012207, 18.7741),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 37
+
+[sub_resource type="Curve3D" id="Curve3D_a2o3v"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -359, 0, -246, 0, 0, 0, 0, 0, 0, -360, 0, -210, 0, 0, 0, 0, 0, 0, -353.742, 0, -201.467, 0, 0, 0, 0, 0, 0, -346.638, 0, -194.779, 0, 0, 0, 0, 0, 0, -338, 0, -189, 0, 0, 0, 0, 0, 0, -333, 0, -183, 0, 0, 0, 0, 0, 0, -326, 0, -182, 0, 0, 0, 0, 0, 0, -313.677, -0.000164792, -179.841, 0, 0, 0, 0, 0, 0, -302.897, -0.000308937, -179.702, 0, 0, 0, 0, 0, 0, -293.913, -0.000429083, -179.587, 0, 0, 0, 0, 0, 0, -280.357, -0.000610352, -179.412, 0, 0, 0, 0, 0, 0, -268, 0, -179, 0, 0, 0, 0, 0, 0, -256, 0, -178, 0, 0, 0, 0, 0, 0, -249, 0, -174, 0, 0, 0, 0, 0, 0, -243, 0, -165, 0, 0, 0, 0, 0, 0, -240.207, -0.000610352, -158.689, 0, 0, 0, 0, 0, 0, -240.207, -0.000488281, -136.671, 0, 0, 0, 0, 0, 0, -240.852, -0.000427459, -115.375, 0, 0, 0, 0, 0, 0, -241.502, -0.000366211, -93.9301, 0, 0, 0, 0, 0, 0, -239.502, -0.00031662, -77.6307, 0, 0, 0, 0, 0, 0, -239.502, -0.000244141, -69.7796, 0, 0, 0, 0, 0, 0, -238.914, -0.000188708, -59.3109, 0, 0, 0, 0, 0, 0, -239, 0, -51, 0, 0, 0, 0, 0, 0, -239, 0, -32, 0, 0, 0, 0, 0, 0, -239, 0, -16, 0, 0, 0, 0, 0, 0, -237, 0, -2, 0, 0, 0, 0, 0, 0, -220, 0, 21, 0, 0, 0, 0, 0, 0, -205, 0, 21, 0, 0, 0, 0, 0, 0, -210.417, 0.00012207, 21.0455, 0, 0, 0, 0, 0, 0, -196.664, 0.00012207, 20.7451, 0, 0, 0, 0, 0, 0, -184.591, 0.00012207, 21.1096, 0, 0, 0, 0, 0, 0, -166.824, 0.00012207, 19.7741, 0, 0, 0, 0, 0, 0, -146.761, 0.00012207, 18.7741),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 33
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qc5db"]
+size = Vector3(20, 2, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ncy53"]
+size = Vector3(20, 2, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_davg4"]
+size = Vector3(18, 1.8, 18)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7vc2v"]
+size = Vector3(18, 1.8, 18)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s7n6n"]
+size = Vector3(20, 2, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nd1r1"]
+size = Vector3(5000, 1, 5000)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rrudx"]
+size = Vector3(5000, 1, 5000)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_davg4"]
+emission_shape_scale = Vector3(600, 1, 600)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_davg4"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_7vc2v"]
+material = SubResource("StandardMaterial3D_davg4")
+size = Vector2(0.05, 1)
+
+[sub_resource type="Environment" id="Environment_davg4"]
+fog_light_color = Color(1, 1, 1, 1)
+adjustment_enabled = true
+adjustment_brightness = 1.95
+adjustment_contrast = 0.48
+adjustment_saturation = 1.52
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_7vc2v"]
+
+[node name="Track2" type="Node3D"]
+
+[node name="Node3D" parent="." instance=ExtResource("7_ncy53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+script = ExtResource("2_5hw7b")
+
+[node name="City" parent="." instance=ExtResource("1_ht7c6")]
+
+[node name="AIPath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_lpn3u")
+
+[node name="BranchA" type="Path3D" parent="AIPath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+curve = SubResource("Curve3D_ebjun")
+
+[node name="BranchB" type="Path3D" parent="AIPath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+curve = SubResource("Curve3D_a2o3v")
+
+[node name="BranchExit" type="Area3D" parent="."]
+script = ExtResource("4_w7ixh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BranchExit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -194, 0, 19)
+shape = SubResource("BoxShape3D_qc5db")
+
+[node name="BranchStart" type="Area3D" parent="."]
+script = ExtResource("4_banxg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BranchStart"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -361, 0, -217)
+shape = SubResource("BoxShape3D_ncy53")
+
+[node name="RaceManager" type="Node3D" parent="."]
+script = ExtResource("5_w7ixh")
+
+[node name="FinishLine" type="Area3D" parent="RaceManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 0, -128)
+script = ExtResource("6_4c6gc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaceManager/FinishLine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_davg4")
+
+[node name="Checkpoint1" type="Area3D" parent="RaceManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 0, -242)
+script = ExtResource("7_3pumb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaceManager/Checkpoint1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_7vc2v")
+
+[node name="Checkpoint2" type="Area3D" parent="RaceManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -189.5, 0, -260)
+script = ExtResource("7_3pumb")
+checkpoint_index = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaceManager/Checkpoint2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_7vc2v")
+
+[node name="Checkpoint3" type="Area3D" parent="RaceManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -357.5, 0, -240)
+script = ExtResource("7_3pumb")
+checkpoint_index = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaceManager/Checkpoint3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_7vc2v")
+
+[node name="Checkpoint4" type="Area3D" parent="RaceManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -360.5, 0, -130)
+script = ExtResource("7_3pumb")
+checkpoint_index = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaceManager/Checkpoint4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_7vc2v")
+
+[node name="Checkpoint8" type="Area3D" parent="RaceManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -313.5, 0, -180)
+script = ExtResource("7_3pumb")
+checkpoint_index = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaceManager/Checkpoint8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_7vc2v")
+
+[node name="Checkpoint5" type="Area3D" parent="RaceManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -357.5, 0, 5)
+script = ExtResource("7_3pumb")
+checkpoint_index = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaceManager/Checkpoint5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_7vc2v")
+
+[node name="Checkpoint9" type="Area3D" parent="RaceManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -237.5, 0, 5)
+script = ExtResource("7_3pumb")
+checkpoint_index = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaceManager/Checkpoint9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_7vc2v")
+
+[node name="Checkpoint6" type="Area3D" parent="RaceManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.5, 0, 18)
+script = ExtResource("7_3pumb")
+checkpoint_index = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaceManager/Checkpoint6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_7vc2v")
+
+[node name="Checkpoint7" type="Area3D" parent="RaceManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, -21)
+script = ExtResource("7_3pumb")
+checkpoint_index = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RaceManager/Checkpoint7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_7vc2v")
+
+[node name="SpawnPos" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -51)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnPos"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -30)
+shape = SubResource("BoxShape3D_s7n6n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_nd1r1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_rrudx")
+
+[node name="Node3D2" parent="." instance=ExtResource("8_davg4")]
+transform = Transform3D(500, 0, 0, 0, 1, 0, 0, 0, 500, -19, 10, -88)
+visible = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -533, 15, -487)
+amount = 400000
+lifetime = 6.0
+visibility_aabb = AABB(-4, -4, -4, 600, 8, 600)
+process_material = SubResource("ParticleProcessMaterial_davg4")
+draw_pass_1 = SubResource("QuadMesh_7vc2v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.524402, 0.810824, 0.259937, -0.220377, 0.165631, -0.961249, -0.822457, -0.561365, 0.0918293, 86, 137, 16)
+light_color = Color(1, 1, 0.921569, 1)
+light_energy = 0.5
+light_indirect_energy = 0.667
+light_specular = 0.667
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_davg4")
+camera_attributes = SubResource("CameraAttributesPhysical_7vc2v")
+
+[connection signal="body_entered" from="BranchExit" to="BranchExit" method="_on_body_entered"]
+[connection signal="body_entered" from="BranchStart" to="BranchStart" method="_on_body_entered"]

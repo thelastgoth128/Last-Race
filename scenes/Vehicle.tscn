@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://brrculp702raw"]
+
+[ext_resource type="Script" path="res://scripts/car_base.gd" id="1_1lm87"]
+[ext_resource type="Texture2D" uid="uid://c42abuxtk6s3t" path="res://assets/buttons/yellow_sliderDown.png" id="3_hdsag"]
+[ext_resource type="PackedScene" path="res://scenes/sedan_sports.tscn" id="3_vujux"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ytgb6"]
+size = Vector3(1.44995, 1.18776, 2.66089)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pqb02"]
+height = 1.3551
+radius = 0.253418
+
+[node name="Car" type="CharacterBody3D"]
+script = ExtResource("1_1lm87")
+gravity = -15.0
+wheel_base = 1.2
+engine_power = 32.0
+max_speed_reverse = 6.0
+traction_slow = 0.65
+
+[node name="CollisionBody" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0577393, 0.564904, -0.0167236)
+shape = SubResource("BoxShape3D_ytgb6")
+
+[node name="CollisionWheelsRear" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.0359303, 0.997786, -0.0559681, -0.582265, -0.0664179, -0.810282, -0.812205, 0.00347457, 0.583362, 0.0105093, 0.260603, -0.663029)
+shape = SubResource("CylinderShape3D_pqb02")
+
+[node name="CollisionWheelsFront" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.0359303, 0.997786, -0.0559681, -0.582265, -0.0664179, -0.810282, -0.812205, 0.00347457, 0.583362, 0.0105093, 0.278005, 0.691256)
+shape = SubResource("CylinderShape3D_pqb02")
+
+[node name="RearRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451111, -0.0636, 0.705176)
+exclude_parent = false
+target_position = Vector3(0, -2, 0)
+
+[node name="FrontRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.481122, -0.0964286, -0.834148)
+target_position = Vector3(0, -2, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2, 0)
+texture = ExtResource("3_hdsag")
+
+[node name="sedan-sports" parent="." instance=ExtResource("3_vujux")]
+
+[node name="CameraPositions" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Marker3D" type="Marker3D" parent="CameraPositions"]
+transform = Transform3D(0.707107, 0.404761, -0.579801, -5.167e-10, 0.819962, 0.572418, 0.707107, -0.404761, 0.579801, -33, 19.9312, 11.8971)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPositions/Marker3D"]
+transform = Transform3D(-0.547451, -0.202881, -0.811872, 0.118631, -0.979184, 0.164697, -0.828386, -0.00614944, 0.560124, -0.422394, 2.73522, -4.32143)
+fov = 60.668
+
+[node name="Marker3D2" type="Marker3D" parent="CameraPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19937, 0.722542, 2.31361)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPositions/Marker3D2"]
+transform = Transform3D(-0.704363, -0.619476, -0.346586, -0.636644, 0.335371, 0.694414, -0.313939, 0.709771, -0.630609, 2.61232, 0.971978, 0.188394)

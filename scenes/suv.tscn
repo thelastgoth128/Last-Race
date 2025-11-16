@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bspybha40kkx1"]
+
+[ext_resource type="PackedScene" uid="uid://cfqc7jw5fbhsq" path="res://assets/cars/suv.glb" id="1_t8eya"]
+
+[node name="suv" instance=ExtResource("1_t8eya")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://di6eo1pecck7l"]
+
+[ext_resource type="PackedScene" uid="uid://bh6ipohie6c4s" path="res://vehicle_speedster_2.tscn" id="1_tjtx5"]
+[ext_resource type="Script" uid="uid://83j7yy0t4rf3" path="res://vehicle_speedster_2.gd" id="1_ue5fp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjtx5"]
+size = Vector3(0.6, 0.3, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ue5fp"]
+height = 0.6
+radius = 0.12
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_ue5fp")
+
+[node name="vehicle-speedster2" parent="." instance=ExtResource("1_tjtx5")]
+transform = Transform3D(-40, 0, -3.49691e-06, 0, 40, 0, 3.49691e-06, 0, -40, 0, 0, 0)
+
+[node name="Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_tjtx5")
+
+[node name="CollisionWheelFront" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.15, -0.2)
+shape = SubResource("CylinderShape3D_ue5fp")
+
+[node name="CollisionWheelRear" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.15, 0.3)
+shape = SubResource("CylinderShape3D_ue5fp")
+
+[node name="FrontRay" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.2)
+
+[node name="RearRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3)
+
+[node name="CameraPositions" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Marker3D" type="Marker3D" parent="CameraPositions"]
+transform = Transform3D(1, 0, 0, 0, 0.819962, 0.572418, 0, -0.572418, 0.819962, 0, 2.93123, 3.87034)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPositions/Marker3D"]
+transform = Transform3D(0.769703, 0.229651, -0.595666, -0.45395, -0.459166, -0.763607, -0.448873, 0.858153, -0.249171, -1.75295, 0.266758, 0.961489)
+fov = 60.668
+
+[node name="Marker3D2" type="Marker3D" parent="CameraPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19937, 0.722542, 2.31361)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPositions/Marker3D2"]
+transform = Transform3D(-0.704363, -0.619476, -0.346586, -0.636644, 0.335371, 0.694414, -0.313939, 0.709771, -0.630609, 2.61232, 0.971978, 0.188394)

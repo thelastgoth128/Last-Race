@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2rrs5uahgujw"]
+
+[ext_resource type="PackedScene" uid="uid://cqlvaf0xpvu4r" path="res://assets/cars/race-future.glb" id="1_k2pta"]
+
+[node name="race-future" instance=ExtResource("1_k2pta")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

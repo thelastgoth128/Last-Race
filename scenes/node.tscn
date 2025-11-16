@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dps8u7sx0jsq0"]
+
+[ext_resource type="PackedScene" uid="uid://di6eo1pecck7l" path="res://toycar.tscn" id="1_sy5k4"]
+[ext_resource type="PackedScene" uid="uid://dsto7cnv7jx8v" path="res://chase_camera.tscn" id="2_j2q8x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nxiqb"]
+size = Vector3(5000, 1, 5000)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sy5k4"]
+size = Vector3(5000, 1, 5000)
+
+[node name="Node" type="Node"]
+
+[node name="ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+shape = SubResource("BoxShape3D_nxiqb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground/CollisionShape3D"]
+mesh = SubResource("BoxMesh_sy5k4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.707107, -0.707107, 0, 0.612373, -0.612373, 0.5, -0.353553, 0.353553, 0.866025, 0, 0, 0)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_sy5k4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 98)
+
+[node name="ChaseCamera" parent="." instance=ExtResource("2_j2q8x")]
+transform = Transform3D(1, 0, 0, 0, 0.996602, 0.0823732, 0, -0.0823732, 0.996602, 0.352665, 85.9069, 177.101)
+current = true
+fov = 122.456

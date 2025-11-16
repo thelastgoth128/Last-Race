@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkrofbkag3xej"]
+
+[ext_resource type="PackedScene" uid="uid://dqgj3kcfuc46h" path="res://assets/racing/Models/GLTF format/pitsOfficeCorner.glb" id="1_d1k5b"]
+
+[node name="pitsOfficeCorner" instance=ExtResource("1_d1k5b")]
+
+[node name="pitsOfficeCorner(Clone)" parent="." index="0"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -0.35, -0.01, -0.65)

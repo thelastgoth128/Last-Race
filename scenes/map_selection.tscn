@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://7jxotrk66xcp"]
+
+[ext_resource type="Texture2D" uid="uid://yrw36e5p1v2h" path="res://assets/images/Screenshot (23).png" id="1_2hebv"]
+[ext_resource type="Script" path="res://scripts/map_selection.gd" id="1_67kvg"]
+[ext_resource type="Texture2D" uid="uid://dhadxhy3bipt2" path="res://assets/images/Screenshot (19).png" id="1_kwys1"]
+[ext_resource type="Texture2D" uid="uid://d0ps8jhrswrr0" path="res://assets/images/.png" id="2_kwys1"]
+[ext_resource type="Texture2D" uid="uid://dik5s6g2obf8h" path="res://assets/buttons/green_sliderLeft.png" id="5_wwjl8"]
+[ext_resource type="Script" uid="uid://d1qkimfwwfp8a" path="res://scripts/back.gd" id="6_1veqa"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_67kvg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109804, 0.176471, 0.207843, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.211765)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2hebv")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 16.0
+offset_right = 250.0
+offset_bottom = 89.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "SELECT RACE TRACK"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 86.0
+offset_right = 583.0
+offset_bottom = 627.0
+
+[node name="TextureRect" type="TextureRect" parent="Button"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 9.0
+offset_right = 456.0
+offset_bottom = 435.0
+texture = ExtResource("1_kwys1")
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 474.0
+offset_right = 454.0
+offset_bottom = 560.0
+theme_override_font_sizes/font_size = 20
+text = "GOTH-CITY"
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 714.0
+offset_top = 61.0
+offset_right = 1102.0
+offset_bottom = 659.0
+
+[node name="TextureRect" type="TextureRect" parent="Button2"]
+layout_mode = 0
+offset_right = 404.0
+offset_bottom = 509.0
+texture = ExtResource("2_kwys1")
+
+[node name="Label" type="Label" parent="Button2"]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 520.0
+offset_right = 433.0
+offset_bottom = 622.0
+theme_override_font_sizes/font_size = 20
+text = "COMMERCIAL- LAST"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 12.0
+offset_right = 81.0
+offset_bottom = 51.0
+icon = ExtResource("5_wwjl8")
+script = ExtResource("6_1veqa")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Back" to="Back" method="_on_pressed"]

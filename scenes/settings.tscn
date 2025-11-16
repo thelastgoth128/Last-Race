@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://tmb4hbejhfi4"]
+
+[ext_resource type="Script" uid="uid://btggluhi003gm" path="res://scripts/settings.gd" id="1_5p8wc"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5p8wc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109804, 0.176471, 0.207843, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 12.0
+offset_right = 760.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 32
+text = "SETTINGS"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 139.0
+offset_right = 318.0
+offset_bottom = 178.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 147.0
+offset_right = 430.0
+offset_bottom = 173.0
+text = "Stop/Play Music"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 398.0
+offset_right = 535.0
+offset_bottom = 443.0
+text = "Back
+"

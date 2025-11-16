@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://doy7h5fq2ui0a"]
+
+[ext_resource type="PackedScene" path="res://scenes/truck.tscn" id="1_1p5xe"]
+[ext_resource type="Script" uid="uid://corthpeunes75" path="res://scripts/ai_car.gd" id="1_8cye3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bishi"]
+size = Vector3(1.2, 1.2, 3)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ejsn0"]
+height = 1.2
+radius = 0.3
+
+[node name="AICar" type="CharacterBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_8cye3")
+
+[node name="Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+shape = SubResource("BoxShape3D_bishi")
+
+[node name="CollisionWheelRear" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0.3, 0.75)
+shape = SubResource("CylinderShape3D_ejsn0")
+
+[node name="CollisionWheelFront" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0.3, -0.7)
+shape = SubResource("CylinderShape3D_ejsn0")
+
+[node name="truck" parent="." instance=ExtResource("1_1p5xe")]
+
+[node name="RearRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
+
+[node name="FrontRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.85)

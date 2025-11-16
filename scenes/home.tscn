@@ -1,0 +1,138 @@
+[gd_scene load_steps=12 format=3 uid="uid://sf82egqe7rpm"]
+
+[ext_resource type="Script" path="res://scripts/home.gd" id="1_vc333"]
+[ext_resource type="Texture2D" uid="uid://kmgm5cs1whvx" path="res://assets/background/Sample.png" id="2_hhep5"]
+[ext_resource type="Texture2D" uid="uid://4ehmtucety61" path="res://assets/background/Preview.png" id="3_cmjdo"]
+[ext_resource type="Texture2D" uid="uid://wx8f22hb48a4" path="res://assets/menu/button_square_border.png" id="4_yu5fn"]
+[ext_resource type="Texture2D" uid="uid://ci45mrejiyvci" path="res://assets/buttons/input_rectangle.png" id="5_ip4d6"]
+[ext_resource type="Texture2D" uid="uid://c3cuh45r4fb3x" path="res://assets/buttons/icon_music.png" id="6_gi00y"]
+[ext_resource type="Script" path="res://scripts/music_on.gd" id="7_rpgsi"]
+[ext_resource type="Texture2D" uid="uid://dehts3krjtw2c" path="res://assets/buttons/icon_music_disabled.png" id="8_ju5sp"]
+[ext_resource type="Script" path="res://scripts/music_off.gd" id="9_o7pnx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q6q8i"]
+texture = ExtResource("5_ip4d6")
+
+[sub_resource type="Theme" id="Theme_tdh31"]
+Button/styles/normal = SubResource("StyleBoxTexture_q6q8i")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vc333")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hhep5")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.470588)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_cmjdo")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.843137)
+layout_mode = 0
+offset_left = 334.0
+offset_top = 86.0
+offset_right = 816.0
+offset_bottom = 598.0
+texture = ExtResource("4_yu5fn")
+
+[node name="StartGame" type="Button" parent="TextureRect3"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 90.0
+offset_right = 411.0
+offset_bottom = 172.0
+theme = SubResource("Theme_tdh31")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Start game"
+
+[node name="Options" type="Button" parent="TextureRect3"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 215.0
+offset_right = 415.0
+offset_bottom = 297.0
+theme = SubResource("Theme_tdh31")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Options"
+
+[node name="Credits" type="Button" parent="TextureRect3"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 339.0
+offset_right = 415.0
+offset_bottom = 421.0
+theme = SubResource("Theme_tdh31")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Credits"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 40
+text = "THE LAST RACE"
+
+[node name="MusicOn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.0
+offset_top = 4.0
+offset_right = 49.0
+offset_bottom = 108.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("6_gi00y")
+script = ExtResource("7_rpgsi")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 86.0
+offset_right = 876.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 40
+text = "THE LAST RACE"
+
+[node name="MusicOff" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1097.0
+offset_top = 4.0
+offset_right = 1201.0
+offset_bottom = 108.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("8_ju5sp")
+script = ExtResource("9_o7pnx")
+
+[connection signal="pressed" from="TextureRect3/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="MusicOn" to="MusicOn" method="_on_pressed"]
+[connection signal="pressed" from="MusicOn" to="MusicOff" method="_on_music_on_pressed"]
+[connection signal="pressed" from="MusicOff" to="MusicOn" method="_on_music_off_pressed"]
+[connection signal="pressed" from="MusicOff" to="MusicOff" method="_on_pressed"]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://cigh2jj18k3ce"]
+
+[ext_resource type="Script" uid="uid://caettdfg33xrr" path="res://scripts/vehicle_2.gd" id="1_vv1pl"]
+[ext_resource type="Texture2D" uid="uid://c42abuxtk6s3t" path="res://assets/buttons/yellow_sliderDown.png" id="3_3bstk"]
+[ext_resource type="PackedScene" path="res://scenes/race_future.tscn" id="3_fci44"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_60ma7"]
+size = Vector3(1.2, 0.5, 2.5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_60ma7"]
+height = 1.2
+radius = 0.2
+
+[node name="Vehicle2" type="CharacterBody3D"]
+script = ExtResource("1_vv1pl")
+gravity = -10.0
+engine_power = 55.0
+slip_speed = 14.0
+
+[node name="Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_60ma7")
+
+[node name="CollisionWheelFront" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0, 0.3, -0.6)
+shape = SubResource("CylinderShape3D_60ma7")
+
+[node name="CollisionWheelRear" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0, 0.3, 0.9)
+shape = SubResource("CylinderShape3D_60ma7")
+
+[node name="RearRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.9)
+
+[node name="FrontRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.6)
+
+[node name="CameraPositions" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Marker3D" type="Marker3D" parent="CameraPositions"]
+transform = Transform3D(0.707107, 0.404761, -0.579801, -5.167e-10, 0.819962, 0.572418, 0.707107, -0.404761, 0.579801, -33, 19.9312, 11.8971)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPositions/Marker3D"]
+transform = Transform3D(-0.547451, -0.202881, -0.811872, 0.118631, -0.979184, 0.164697, -0.828386, -0.00614944, 0.560124, -0.422394, 2.73522, -4.32143)
+fov = 60.668
+
+[node name="Marker3D2" type="Marker3D" parent="CameraPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19937, 0.722542, 2.31361)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPositions/Marker3D2"]
+transform = Transform3D(-0.704363, -0.619476, -0.346586, -0.636644, 0.335371, 0.694414, -0.313939, 0.709771, -0.630609, 2.61232, 0.971978, 0.188394)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2, 0)
+texture = ExtResource("3_3bstk")
+
+[node name="race-future" parent="." instance=ExtResource("3_fci44")]

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dnigufdruxjpg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 336.0
+offset_top = 2.0
+offset_right = 951.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 127.0
+offset_right = 526.0
+offset_bottom = 369.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 403.0
+offset_right = 517.0
+offset_bottom = 520.0
+theme_override_font_sizes/font_size = 32
+
+[node name="Attributes" type="Label" parent="."]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 108.0
+offset_right = 544.0
+offset_bottom = 273.0
+theme_override_font_sizes/font_size = 10

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg8yqoj1i0e8v"]
+
+[ext_resource type="AudioStream" uid="uid://cpby8d7g1tvpo" path="res://Music/12_LOOP_The_Jester's_Tale_by_Florian_Stracker.wav" id="1_05ggv"]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_05ggv")
+volume_db = -15.0
+autoplay = true

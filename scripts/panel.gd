@@ -14,9 +14,9 @@ func _ready() -> void:
 	
 func _process(delta) -> void:
 	time += delta 
-	msec = fmod(time, 1) * 100
-	seconds = fmod(time, 60)
-	minutes = fmod(time, 3600) / 60
+	msec = int(fmod(time, 1) * 100)
+	seconds = int(fmod(time, 60))
+	minutes = int(fmod(time, 3600) / 60)
 	$Minutes.text = "%02d:" % minutes
 	$Seconds.text = "%02d." % seconds
 	$Msecs.text = "%03d" % msec
@@ -26,7 +26,7 @@ func get_time_formatted() -> String:
 
 var finished_time
 
-func race_finished_time(car: Node):
+func race_finished_time(_car: Node):
 	set_process(false)
 	finished_time = "%02d:%02d.%03d" % [minutes, seconds, msec]
 	

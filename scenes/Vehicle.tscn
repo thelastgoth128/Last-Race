@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://brrculp702raw"]
 
-[ext_resource type="Script" path="res://scripts/car_base.gd" id="1_1lm87"]
+[ext_resource type="Script" uid="uid://c20djqunovvk6" path="res://scripts/car_base.gd" id="1_1lm87"]
 [ext_resource type="Texture2D" uid="uid://c42abuxtk6s3t" path="res://assets/buttons/yellow_sliderDown.png" id="3_hdsag"]
 [ext_resource type="PackedScene" path="res://scenes/sedan_sports.tscn" id="3_vujux"]
 

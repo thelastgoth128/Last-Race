@@ -14,6 +14,7 @@ func _ready():
 #emits signal checkpoint crossed handled by the racemanger by the car that passed
 func _on_body_entered(body):
 	if body.is_in_group("AI") or body.is_in_group("Player"):
+		checkpoint_crossed.emit(body, self, next_checkpoint)
 		# Always emit - let RaceManager handle duplicate detection
 		SignalBus.emit_signal("checkpoint_crossed", body, self, next_checkpoint)
 		#print(body.name, " entered checkpoint ", checkpoint_index) debug

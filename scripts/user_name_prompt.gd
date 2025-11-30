@@ -12,4 +12,4 @@ func _on_confirm_pressed():
 		var config = ConfigFile.new()
 		config.set_value("player", "username", username)
 		config.save("user://player.cfg")
-		get_tree().change_scene_to_file("res://home.tscn")
+		get_tree().change_scene_to_file("res://scenes/home.tscn")

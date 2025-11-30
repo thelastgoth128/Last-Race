@@ -73,7 +73,7 @@ func _on_checkpoint_crossed(body: Node, current: Area3D, next: Area3D):
 	update_race_positions()
 	
 	
-func _on_finish_line_crossed(body: Node, lap: int):
+func _on_finish_line_crossed(body: Node, _lap: int):
 	#print(body.name, " crossed finish line!")
 	# Check if car has passed all checkpoints
 	if not checkpoint_progress.has(body):
@@ -169,7 +169,6 @@ func _on_race_position_updated(position_list: Array):
 	var display := ""
 	for i in range (position_list.size()):
 		var car = position_list[i]
-		var dist = get_distance_to_next_checkpoint(car)
 		display += "%d. %s\n" % [i + 1, car.name]
 	#print("RacePositions node:", race_positions_label) debug
 
@@ -179,9 +178,9 @@ func _on_race_position_updated(position_list: Array):
 	
 func show_results():
 	#print("Showing results") debug
-	var position = race_position.find(player_car) + 1
+	var car_position = race_position.find(player_car) + 1
 	var total_time = time_panel.get_time()
 	#print("Player time:", total_time) debug
-	position_label.text = "Position: %s" % position
+	position_label.text = "Position: %s" % car_position
 	time_elapsed_label.text = "Time Elapsed: %s" % total_time
 	game_over_label.visible = true  # Make sure to show the game over screen

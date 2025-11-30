@@ -62,34 +62,34 @@ func _on_checkpoint_crossed(body: Node, current: Area3D, next: Area3D):
 	if index not in progress:
 		progress.append(index)
 		checkpoint_progress[body] = progress
-		#print(body.name, " crossed checkpoint ", index, " (", progress.size(), "/", total_checkpoints, ")")
-		#print(body.name, " crossed checkpoint ", index, " (", progress.size(), "/", total_checkpoints, ")")
+		print(body.name, " crossed checkpoint ", index, " (", progress.size(), "/", total_checkpoints, ")")
+		print(body.name, " crossed checkpoint ", index, " (", progress.size(), "/", total_checkpoints, ")")
 	else:
 		pass
-		#print(body.name, " already passed checkpoint ", index)
+		print(body.name, " already passed checkpoint ", index)
 	
 	next_checkpoint_map[body] = next
 	
 	update_race_positions()
 	
 	
-func _on_finish_line_crossed(body: Node, lap: int):
-	#print(body.name, " crossed finish line!")
-	# Check if car has passed all checkpoints
+func _on_finish_line_crossed(body: Node, _lap: int):
+	print(body.name, " crossed finish line!")
+	 #Check if car has passed all checkpoints
 	if not checkpoint_progress.has(body):
 		checkpoint_progress[body] = []
 	
 	var progress = checkpoint_progress[body]
-	#print("   Progress array contents: ", progress)  # ← See what's in it
-	#print("   Progress size: ", progress.size(), "/", total_checkpoints)
+	print("   Progress array contents: ", progress)  # ← See what's in it
+	print("   Progress size: ", progress.size(), "/", total_checkpoints)
 	
 	# Only count lap if all checkpoints were passed
 	if progress.size() <= total_checkpoints:
 		# Increment lap
 		lap_counts[body] = lap_counts.get(body, 0) + 1
 		var current_lap = lap_counts[body]
-		#print("current_lap", current_lap)
-		#print(body.name, " completed lap ", current_lap)
+		print("current_lap", current_lap)
+		print(body.name, " completed lap ", current_lap)
 		
 		# Reset checkpoint progress for next lap
 		checkpoint_progress[body] = []
@@ -170,7 +170,6 @@ func _on_race_position_updated(position_list: Array):
 	var display := ""
 	for i in range (position_list.size()):
 		var car = position_list[i]
-		var dist = get_distance_to_next_checkpoint(car)
 		display += "%d. %s\n" % [i + 1, car.name]
 	race_positions_label.text = display
 	
@@ -178,9 +177,9 @@ func _on_race_position_updated(position_list: Array):
 	
 func show_results():
 	#print("Showing results")
-	var position = race_position.find(player_car) + 1
+	var car_position = race_position.find(player_car) + 1
 	var total_time = time_panel.get_time()
 	#print("Player time:", total_time)
-	position_label.text = "Position: %s" % position
+	position_label.text = "Position: %s" % car_position
 	time_elapsed_label.text = "Time Elapsed: %s" % total_time
-	game_over_label.visible = true  # Make sure to show the game over screen
+	#game_over_label.visible = true  # Make sure to show the game over screen

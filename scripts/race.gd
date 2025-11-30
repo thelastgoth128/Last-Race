@@ -16,7 +16,7 @@ func get_input():
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	var checkpoint_count = -1
-	var checkpoint_pos = self.global_position
+	var _checkpoint_pos = self.global_position
 	if body == $Vehicle4:
 		checkpoint_count += 1
 		print(checkpoint_count)

@@ -1,20 +1,16 @@
 extends CharacterBody3D
 
-# ============================================================================
-# VARIABLES
-# ============================================================================
-
 # Godot Steering AI Framework components
 var agent  # The GSAI agent that represents this car
 var acceleration := GSAITargetAcceleration.new()  # Stores linear and angular acceleration
 var priority: GSAIPriority  # Priority-based steering behavior combiner
 var follow_behavior: GSAIFollowPath  # Behavior for following the racing path
 
-# Physics and movement parameters - adjustable in editor
+# Physics and movement parameters
 @export var speed_max := 20.0  # Maximum speed the car can reach
 @export var acceleration_max := 10.0  # How fast the car can accelerate
-@export var angular_speed_max := 180.0  # Max rotation speed (degrees/sec)
-@export var angular_acceleration_max := 180.0  # How fast rotation can change
+@export var angular_speed_max := 10.0  # Max rotation speed (degrees/sec)
+@export var angular_acceleration_max := 10.0  # How fast rotation can change
 @export var steering_limit = 5.0  # Maximum steering angle (degrees)
 @export var slip_speed := 9.0  # Speed at which drifting begins
 @export var traction_slow := 0.75  # Traction when not drifting (higher = more grip)
@@ -41,15 +37,7 @@ var is_on_branch := false  # Whether the car is currently on a branch
 var chosen_branch : String = ""  # Which branch was chosen ("A" or "B")
 
 # AI State machine - defines what the car is doing
-enum AIState { 
-	IDLE,      # Not racing yet
-	FOLLOW,    # Following the path normally
-	RECOVER,   # Respawning after getting stuck
-	OVERTAKE,  # Passing another car
-	CORNER,    # Slowing down for a corner
-	AVOID,     # Avoiding collision
-	BRANCH     # Following a branch path
-}
+enum AIState { IDLE,FOLLOW,RECOVER,OVERTAKE, CORNER,BRANCH }
 
 var current_state: AIState = AIState.IDLE  # Current AI state
 var race_started := false  # Whether the race has begun
@@ -57,6 +45,7 @@ var steer_angle := 0.0  # Current steering angle (for visual wheel rotation)
 var stuck_timer := 0.0  # How long the car has been stuck
 var stuck_threshold = 2.0  # Seconds of being stuck before recovery
 var last_checkpoint: Area3D  # Last checkpoint crossed (for respawn)
+var next_checkpoint: Area3D
 
 # Timing and speed control
 var avoid_cooldown := 0.0  # Cooldown timer for avoiding state
@@ -65,9 +54,6 @@ var speed_ramp_time := 3.0  # Time to ramp from slow start to full speed
 var current_speed_multiplier := 0.3  # Current speed multiplier (0.3 = 30%)
 var speed_ramp_timer := 0.0  # Tracks progress of speed ramp-up
 
-# ============================================================================
-# INITIALIZATION
-# ============================================================================
 
 func _ready():
 	# Add this car to the AI group for detection by other cars
@@ -77,17 +63,8 @@ func _ready():
 	SignalBus.connect("Go", Callable(self, "_on_go_signal"))  # Race start signal
 	SignalBus.connect("branch_entry_triggered", Callable(self,"_on_branch_entry_triggered"))  # Branch entry
 	SignalBus.connect("branch_exit_triggered", Callable(self, "_on_branch_exit_triggered"))  # Branch exit
-	connect_checkpoints()  # Connect to all checkpoint signals
-	
-	# Optional: Connect to chase camera for spectating AI
-	#test data to view and analyze AI car movement 
-	#var chase_camera = get_tree().get_root().find_child("ChaseCamera", true, false)
-	#if chase_camera:
-		#connect("change_camera", Callable(chase_camera, "_on_change_camera"))
-		#print(name, " connected to ChaseCamera")
-	#else:
-		#print(name, " ERROR: ChaseCamera not found!")
-	
+	SignalBus.connect("checkpoint_crossed", Callable(self, "_on_checkpoint_crossed"))
+
 	# Initialize race state
 	race_started = true  # Set to true for testing without countdown
 	current_state = AIState.FOLLOW
@@ -96,12 +73,6 @@ func _ready():
 	# Store reference to main path
 	main_path = path_node
 	current_active_path = main_path
-	
-	# Validate path exists
-	if path_node:
-		if path_node.curve.get_point_count() > 0:
-			var first_point = path_node.curve.get_point_position(0)
-			var first_point_global = path_node.to_global(first_point)
 	
 	# Create the GSAI steering agent (async operation)
 	agent = await GSAICharacterBody3DAgent.new(self)
@@ -117,38 +88,18 @@ func _ready():
 	# Setup steering behaviors for the main path
 	setup_path_following(path_node)
 
-# ============================================================================
-# PATH FOLLOWING SETUP
-# ============================================================================
-
 func setup_path_following(target_path: Path3D):
-	# Validate the path exists
-	if target_path == null:
-		push_error(name + " - Target path is null!")
-		return
-	
 	# Extract all waypoints from the path curve
 	var waypoints := []
 	for i in target_path.curve.get_point_count():
 		waypoints.append(target_path.curve.get_point_position(i))
-	
-	# Ensure we have enough waypoints
-	if waypoints.size() < 2:
-		push_error("Path needs at least 2 waypoints!")
-		return
-	
+
 	# Create GSAI path from waypoints
 	var path := GSAIPath.new(waypoints)
 	
 	# Create path following behavior
-	# Parameters: agent, path, path_offset, prediction_time
 	follow_behavior = GSAIFollowPath.new(agent, path, 1.5, 0.5)
-	
-	# Create look-where-you-go behavior (rotates car to face velocity direction)
-	var look := GSAILookWhereYouGo.new(agent)
-	look.alignment_tolerance = 0.01  # How precise the alignment should be
-	look.deceleration_radius = 0.1  # Distance to start slowing rotation
-	
+
 	# Build list of other AI agents for collision avoidance
 	var agent_list := []
 	for node in get_tree().get_nodes_in_group("AI"):
@@ -156,23 +107,16 @@ func setup_path_following(target_path: Path3D):
 			agent_list.append(node.get_steering_agent())
 
 	# Create proximity system for detecting nearby cars
-	var proximity := GSAIRadiusProximity.new(agent, agent_list, 3.0)
+	var proximity := GSAIRadiusProximity.new(agent, agent_list, 4.0)
 	
 	# Create collision avoidance behavior
 	var avoid := GSAIAvoidCollisions.new(agent, proximity)
 	avoid.proximity = GSAIRadiusProximity.new(agent, agent_list, 3.0)
 	
-	# Combine all behaviors in priority order (higher priority first)
+	# Combine all behaviors in priority order
 	priority = GSAIPriority.new(agent)
-	priority.add(avoid)  # Highest priority: avoid collisions
-	priority.add(follow_behavior)  # Medium priority: follow path
-	priority.add(look)  # Lowest priority: face movement direction
-	
-	#print(name, " path following setup complete for: ", target_path.name)
-
-# ============================================================================
-# BRANCHING SYSTEM
-# ============================================================================
+	priority.add(avoid) 
+	priority.add(follow_behavior)  
 
 # Called when car enters a branch entry zone
 func _on_branch_entry_triggered(car:Node):
@@ -216,52 +160,33 @@ func choose_branch() -> String:
 
 # Switch the car to follow a different path
 func switch_to_path(new_path: Path3D):
-	if new_path == null:
-		push_error(name + " - Cannot switch to null path!")
+	if not is_inside_tree() or not new_path.is_inside_tree():
 		return
-	
-	# Update path references
+
 	current_active_path = new_path
 	path_node = new_path
-	
-	# Find the nearest waypoint on the new path
+
 	var nearest_index = 0
 	var min_dist = INF
-	
+
 	for i in range(new_path.curve.get_point_count()):
 		var point = new_path.curve.get_point_position(i)
 		var point_global = new_path.to_global(point)
 		var dist = global_position.distance_to(point_global)
-		
+
 		if dist < min_dist:
 			min_dist = dist
 			nearest_index = i
-	
-	# Update current path position
+
 	current_path_index = nearest_index
-	
-	# Rebuild steering behaviors for the new path
 	setup_path_following(new_path)
 
-# ============================================================================
-# CHECKPOINT SYSTEM
-# ============================================================================
-
-# Connect to all checkpoint signals in the scene
-func connect_checkpoints():
-	for checkpoint in get_tree().get_nodes_in_group("Checkpoints"):
-		checkpoint.connect("checkpoint_crossed", Callable(self, "_on_checkpoint_crossed"))
 
 # Called when this car crosses a checkpoint
-func _on_checkpoint_crossed(body:Node, current:Area3D, next: Area3D):
+func _on_checkpoint_crossed(body:Node, current:Area3D, _next: Area3D):
 	if body == self:
 		# Store the last checkpoint for respawning
 		last_checkpoint = current
-		#print(name, " crossed checkpoint: ", current.name)
-
-# ============================================================================
-# RACE START
-# ============================================================================
 
 # Called when the race starts (Go signal)
 func _on_go_signal():
@@ -269,19 +194,11 @@ func _on_go_signal():
 	current_state = AIState.FOLLOW
 	set_physics_process(true)  # Enable physics processing
 	
-	# Reset speed ramp (starts at 30% speed)
+	# Reset speed ramp 
 	speed_ramp_timer = 0.0
 	current_speed_multiplier = 0.3
 
-# ============================================================================
-# MAIN PHYSICS LOOP
-# ============================================================================
-
 func _physics_process(delta):
-	# Safety check: ensure steering agent is ready
-	if agent == null or priority == null:
-		return
-	
 	# Apply gravity when not on ground
 	if not is_on_floor():
 		velocity.y += gravity
@@ -298,10 +215,8 @@ func _physics_process(delta):
 	
 	# Update which waypoint we're closest to
 	update_path_index()
-	
 	# Check if car is stuck
 	update_stuck_timer(delta)
-	
 	# Determine which state to be in
 	check_transitions()
 	
@@ -333,12 +248,10 @@ func _physics_process(delta):
 			var next_index = wrapi(current_path_index + 1, 0, path_node.curve.get_point_count())
 			var local_pos = path_node.curve.get_point_position(next_index)
 			var global_pos = path_node.to_global(local_pos)
-
 			# Teleport to next waypoint
 			global_position = global_pos + Vector3.UP * 1.0
 			velocity = Vector3.ZERO
 			current_path_index = next_index
-			
 			# Return to normal racing
 			current_state = AIState.FOLLOW
 			speed_ramp_timer = 0.0
@@ -356,22 +269,6 @@ func _physics_process(delta):
 			# Speed boost for overtaking
 			agent.linear_speed_max = speed_max * 1.5
 			
-			#print("Overtaking at speed: ", velocity.length())
-			
-		AIState.AVOID:
-			# Another car is in the way
-			var slow_car = detect_slow_car_ahead()
-			
-			# Try to overtake if possible
-			if slow_car and can_overtake():
-				current_state = AIState.OVERTAKE
-				overtaking_target = slow_car
-				#print("Switching from AVOID to OVERTAKE")
-			else:
-				# Just slow down and follow steering
-				priority.calculate_steering(acceleration)
-				agent.linear_speed_max = speed_max * 0.3 * current_speed_multiplier
-	
 	# Align car with ground slope
 	if $FrontRay.is_colliding() or $RearRay.is_colliding():
 		# Get ground normals from raycasts
@@ -399,10 +296,6 @@ func _physics_process(delta):
 	# Additional manual steering adjustments
 	apply_steering_rotation()
 
-# ============================================================================
-# OVERTAKING SYSTEM
-# ============================================================================
-
 # Check if there's space to overtake on either side
 func can_overtake() -> bool:
 	var space_state = get_world_3d().direct_space_state
@@ -412,7 +305,7 @@ func can_overtake() -> bool:
 	var right_dir = -global_transform.basis.x
 	var left_dir = global_transform.basis.x
 	
-	var check_distance = 4.0  # How far to check for obstacles
+	var check_distance = 2.0 
 	
 	# Cast ray to the right
 	var right_check = from + right_dir * check_distance
@@ -435,17 +328,13 @@ func can_overtake() -> bool:
 	# Can overtake if at least one side is clear
 	return right_clear or left_clear
 
-# ============================================================================
-# PATH TRACKING
-# ============================================================================
-
 # Find the nearest waypoint to the car's current position
 func update_path_index():
 	var curve = path_node.curve
 	var min_dist = INF
 	var nearest_idx = current_path_index
 	
-	# Search nearby waypoints (current ± 5)
+	# Search nearby waypoints 
 	var search_range = 5
 	for offset in range(-search_range, search_range + 1):
 		var idx = wrapi(current_path_index + offset, 0, curve.get_point_count())
@@ -455,13 +344,8 @@ func update_path_index():
 		if dist < min_dist:
 			min_dist = dist
 			nearest_idx = idx
-	
 	# Update current path position
 	current_path_index = nearest_idx
-
-# ============================================================================
-# STATE MACHINE
-# ============================================================================
 
 # Determine which state the car should be in
 func check_transitions():
@@ -493,47 +377,27 @@ func check_transitions():
 	# Overtaking logic: can trigger from FOLLOW, CORNER, or AVOID
 	var slow_car = detect_slow_car_ahead()
 	
-	if current_state in [AIState.FOLLOW, AIState.CORNER, AIState.AVOID] and slow_car:
+	if current_state in [AIState.FOLLOW, AIState.CORNER] and slow_car:
 		# Only overtake if there's space
 		if can_overtake():
 			current_state = AIState.OVERTAKE
 			overtaking_target = slow_car
 			#print(name, " Starting overtake of ", slow_car.name)
 			return
-	
 	# Exit overtake when we've passed the car
 	if current_state == AIState.OVERTAKE:
 		if overtaking_target == null or global_position.distance_to(overtaking_target.global_position) > 8.0:
 			current_state = AIState.FOLLOW
 			overtaking_target = null
 			#print(name, " Overtake complete!")
-			return
-	
+			return	
 	# Corner detection
 	if current_state == AIState.FOLLOW and is_approaching_corner():
 		current_state = AIState.CORNER
 		return
-	
 	if current_state == AIState.CORNER and not is_approaching_corner():
 		current_state = AIState.FOLLOW
 		return
-	
-	# Collision avoidance (only if NOT already overtaking)
-	if current_state in [AIState.FOLLOW, AIState.CORNER] and detect_collision_threat():
-		current_state = AIState.AVOID
-		avoid_cooldown = avoid_cooldown_time
-		#print(name, " Avoiding collision!")
-		return
-
-	# Exit avoidance when threat is gone and cooldown expired
-	if current_state == AIState.AVOID and avoid_cooldown <= 0 and not detect_collision_threat():
-		current_state = AIState.FOLLOW
-		#print(name, " Threat cleared, resuming follow.")
-		return
-
-# ============================================================================
-# STUCK DETECTION
-# ============================================================================
 
 # Track how long the car has been moving slowly
 func update_stuck_timer(delta):
@@ -541,69 +405,19 @@ func update_stuck_timer(delta):
 	if not race_started:
 		stuck_timer = 0.0
 		return
-	
 	var speed = velocity.length()
-	
 	# Increment timer if moving slowly
 	if speed < 2.0:
 		stuck_timer += delta
 	else:
 		# Reset timer if moving normally
 		stuck_timer = 0.0
-
+		
 # Check if car has been stuck long enough to trigger recovery
 func is_stuck() -> bool:
 	return stuck_timer >= stuck_threshold
-
-# ============================================================================
-# COLLISION DETECTION
-# ============================================================================
-
-# Check if there's a car directly in front that might be hit
-func detect_collision_threat() -> bool:
-	var space_state = get_world_3d().direct_space_state
-	var from = global_position
 	
-	# Get direction vectors
-	var forward = global_transform.basis.z.normalized()
-	var right = -global_transform.basis.x.normalized()
-	var left = global_transform.basis.x.normalized()
-	
-	# Offset origins for side rays
-	var from_right = from + right * 1.2
-	var from_left = from + left * 1.2
-	
-	var ray_length := 5.0  # How far ahead to check
-	
-	# Cast forward ray
-	var forward_query = PhysicsRayQueryParameters3D.create(from, from + forward * ray_length)
-	forward_query.exclude = [self]
-	forward_query.collision_mask = 1
-	var forward_hit = space_state.intersect_ray(forward_query)
-	
-	# Cast right-forward ray
-	var right_query = PhysicsRayQueryParameters3D.create(from_right, from_right + forward * ray_length)
-	right_query.exclude = [self]
-	right_query.collision_mask = 1
-	var right_hit = space_state.intersect_ray(right_query)
-	
-	# Cast left-forward ray
-	var left_query = PhysicsRayQueryParameters3D.create(from_left, from_left + forward * ray_length)
-	left_query.exclude = [self]
-	left_query.collision_mask = 1
-	var left_hit = space_state.intersect_ray(left_query)
-	
-	# Check if any ray hit another car
-	if forward_hit and (forward_hit["collider"].is_in_group("AI") or forward_hit["collider"].is_in_group("Player")):
-		return true
-	if right_hit and (right_hit["collider"].is_in_group("AI") or right_hit["collider"].is_in_group("Player")):
-		return true
-	if left_hit and (left_hit["collider"].is_in_group("AI") or left_hit["collider"].is_in_group("Player")):
-		return true
-	
-	return false
-
-# Detect slower cars ahead that could be overtaken
+# Detect slower cars ahead that could be overtaken using rays infornt of the car mid left and right
 func detect_slow_car_ahead() -> Node:
 	var space_state = get_world_3d().direct_space_state
 	var from = global_position
@@ -637,14 +451,8 @@ func detect_slow_car_ahead() -> Node:
 	center_query.collision_mask = 1
 	right_query.collision_mask = 1
 	left_query.collision_mask = 1
-	
 	# Cast all rays
-	var results = [
-		space_state.intersect_ray(center_query),
-		space_state.intersect_ray(right_query),
-		space_state.intersect_ray(left_query)
-	]
-	
+	var results = [space_state.intersect_ray(center_query),space_state.intersect_ray(right_query),space_state.intersect_ray(left_query)]
 	# Check each result for slower cars
 	for result in results:
 		if result and result.has("collider"):
@@ -657,15 +465,13 @@ func detect_slow_car_ahead() -> Node:
 					# Return car if we're faster by at least 1.0 units
 					if my_speed > their_speed + 1.0:
 						return collider
-	
 	return null
 
-# ============================================================================
-# MANUAL STEERING ADJUSTMENTS
-# ============================================================================
-
-# Additional rotation and traction handling (supplements GSAI steering)
+# Additional rotation and traction handling (had a hard time using lookwhereyougo and face from the framework added manual)
 func apply_steering_rotation():
+	if agent == null or priority == null:
+		return
+		
 	if velocity.length() > 0.1:
 		# Rotate car to face velocity direction
 		var target_dir = velocity.normalized()
@@ -673,18 +479,14 @@ func apply_steering_rotation():
 		var angle = current_dir.signed_angle_to(target_dir, Vector3.UP)
 		var rotation_step = clamp(angle, deg_to_rad(-steering_limit), deg_to_rad(steering_limit))
 		rotate_y(rotation_step)
-
 		# Apply traction (blend velocity towards forward direction)
 		var traction = traction_fast if drifting else traction_slow
 		var forward_velocity = -global_transform.basis.z * velocity.length()
 		var blended_velocity = velocity.lerp(forward_velocity, traction)
 		velocity = blended_velocity
 
-# ============================================================================
-# CORNER DETECTION
-# ============================================================================
 
-# Check if the path ahead has a sharp turn
+# Check if the path ahead has a sharp turn represented as a corner
 func is_approaching_corner(threshold_angle := deg_to_rad(5.0)) -> bool:
 	var curve = path_node.curve
 	var point_count = curve.get_point_count()
@@ -716,14 +518,9 @@ func is_approaching_corner(threshold_angle := deg_to_rad(5.0)) -> bool:
 		# If angle exceeds threshold, it's a corner
 		if angle > threshold_angle:
 			return true
-	
 	return false
 
-# ============================================================================
-# UTILITY FUNCTIONS
-# ============================================================================
-
-# Align a transform's Y-axis with a given direction (for ground alignment)
+# Align a transform's Y-axis with a given direction (for ground alignment) code from kidscancode
 func align_with_y(xform, new_y):
 	xform.basis.y = new_y  # Set up direction
 	xform.basis.x = -xform.basis.z.cross(new_y)  # Recalculate right direction

@@ -1,4 +1,4 @@
-extends "res://car_base.gd"
+extends "res://scripts/car_base.gd"
 
 
 func get_input():

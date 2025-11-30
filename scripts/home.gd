@@ -18,10 +18,6 @@ func _ready() -> void:
 	options.connect("pressed", Callable(self, "_on_options_clicked"))
 	credits.connect("pressed", Callable(self,"_on_credit_clicked"))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _on_options_clicked():
 	get_tree().change_scene_to_file("res://scenes/settings.tscn")
 

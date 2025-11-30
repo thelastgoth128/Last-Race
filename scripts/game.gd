@@ -58,7 +58,6 @@ func spawn_selected_car():
 		var spawn_pos =  road_instance.get_node("SpawnPos") # position the car on the race track
 		car_instance.global_transform = spawn_pos.global_transform
 		#print("spawn position",car_instance.global_transform) debug
-		Music.stop()
 		add_child(car_instance) # add child to scene
 		
 		# add player to group

@@ -9,7 +9,7 @@ var start_pos := Vector2.ZERO
 func _ready():
 	SignalBus.connect("Race_finished", Callable(self, "_on_race_finished"))
 
-func _on_race_finished(car: Node):
+func _on_race_finished(_car: Node):
 	visible = false
 
 

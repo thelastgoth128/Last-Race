@@ -7,7 +7,7 @@ func _ready() -> void:
 	SignalBus.connect("start_race", Callable(self, "_on_start_race_pressed"))
 	SignalBus.connect("Race_finished", Callable(self, "_on_race_finished"))
 
-func _on_race_finished(car: Node):
+func _on_race_finished(_car: Node):
 	visible = false
 
 func _on_start_race_pressed() -> void:

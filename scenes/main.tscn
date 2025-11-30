@@ -1,23 +1,25 @@
-[gd_scene load_steps=30 format=3 uid="uid://ck10obr3dcen0"]
+[gd_scene load_steps=32 format=3 uid="uid://ck10obr3dcen0"]
 
 [ext_resource type="Script" uid="uid://dlngw1avr63c1" path="res://scripts/game.gd" id="1_y6deb"]
 [ext_resource type="PackedScene" uid="uid://dsto7cnv7jx8v" path="res://scenes/chase_camera.tscn" id="2_og1vs"]
 [ext_resource type="Script" path="res://scripts/game_interface.gd" id="4_vxglm"]
-[ext_resource type="Script" path="res://scripts/panel.gd" id="5_2f3dj"]
+[ext_resource type="Script" uid="uid://chup1siynt3y1" path="res://scripts/panel.gd" id="5_2f3dj"]
 [ext_resource type="Script" path="res://scripts/laps.gd" id="6_yq6so"]
 [ext_resource type="AudioStream" uid="uid://4f833xy41471" path="res://Music/switch-b.ogg" id="7_fv21b"]
-[ext_resource type="Script" path="res://scripts/gameover.gd" id="8_tel4y"]
+[ext_resource type="Script" uid="uid://c8psbcxm4xf2d" path="res://scripts/gameover.gd" id="8_tel4y"]
 [ext_resource type="Texture2D" uid="uid://bjqjn3mats10i" path="res://assets/buttons/grey_panel.png" id="9_qkpxi"]
 [ext_resource type="Texture2D" uid="uid://t8sshqxjt813" path="res://assets/buttons/icon_repeat_light.png" id="10_5q0nq"]
-[ext_resource type="Script" path="res://scripts/retry.gd" id="11_dgi5k"]
-[ext_resource type="Script" path="res://scripts/speed.gd" id="12_j8jky"]
+[ext_resource type="Script" uid="uid://cia76b80vv02d" path="res://scripts/retry.gd" id="11_dgi5k"]
+[ext_resource type="Script" path="res://scripts/return_menu.gd" id="11_y6deb"]
+[ext_resource type="Script" uid="uid://cb3j44p8j47m3" path="res://scripts/speed.gd" id="12_j8jky"]
 [ext_resource type="Texture2D" uid="uid://cxn07ps3c4o7s" path="res://assets/buttons/icon_pedal.png" id="13_kmb1v"]
 [ext_resource type="Script" uid="uid://dnophi767gknr" path="res://scripts/acceralation.gd" id="14_fuf3a"]
 [ext_resource type="Texture2D" uid="uid://gfk46dxi7gux" path="res://assets/buttons/icon_pedal_brake.png" id="15_pibwh"]
 [ext_resource type="Script" uid="uid://bnpwfc22mwpcr" path="res://scripts/brake.gd" id="16_c6pm6"]
 [ext_resource type="Texture2D" uid="uid://c1trflsdv2a6m" path="res://assets/buttons/icon_pause.png" id="17_5he1u"]
-[ext_resource type="Script" path="res://scripts/pause.gd" id="18_5poiv"]
-[ext_resource type="Script" path="res://scripts/race_positions.gd" id="19_2cjbq"]
+[ext_resource type="Script" uid="uid://cfhdjpgesobfw" path="res://scripts/pause.gd" id="18_5poiv"]
+[ext_resource type="Script" uid="uid://5yqori3avn5n" path="res://scripts/race_positions.gd" id="19_2cjbq"]
+[ext_resource type="Script" uid="uid://c6vaibp70y4ad" path="res://scenes/panel_3.gd" id="19_og1vs"]
 [ext_resource type="Script" uid="uid://bjemtaoevjqd" path="res://scenes/virtual_joystic.gd" id="20_chjal"]
 [ext_resource type="Texture2D" uid="uid://pk3t86ur304c" path="res://assets/buttons/joystick_circle_nub_a.png" id="21_cjqg0"]
 [ext_resource type="Texture2D" uid="uid://gr6ngwk18gqv" path="res://assets/buttons/joystick_circle_nub_highlight.png" id="22_vchkt"]
@@ -226,7 +228,7 @@ offset_right = 755.0
 offset_bottom = 538.0
 theme_override_font_sizes/font_size = 32
 text = "Return to Main Menu"
-script = ExtResource("11_dgi5k")
+script = ExtResource("11_y6deb")
 
 [node name="Speed" type="Label" parent="GameInterface"]
 layout_mode = 0
@@ -269,13 +271,14 @@ layout_mode = 0
 offset_top = 75.0
 offset_right = 238.0
 offset_bottom = 250.0
+script = ExtResource("19_og1vs")
 
 [node name="RacePositions" type="Label" parent="GameInterface"]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 84.0
-offset_right = 227.0
-offset_bottom = 323.0
+offset_right = 228.0
+offset_bottom = 248.0
 theme_override_font_sizes/font_size = 24
 text = "1.Sedan
 2.CharacterBody3D

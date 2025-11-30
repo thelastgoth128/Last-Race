@@ -71,13 +71,18 @@ func apply_friction(delta):
 	acceleration += drag_force + fricition_force
 	
 func calculate_steering(delta):
-	#steer_angle = deg_to_rad(steering_input * steering_limit)
+	# combine joystick + keyboard input
+	var combined_input = steering_input
+	var turn = Input.get_action_strength("steer_left") - Input.get_action_strength("steer_right")
+	combined_input += turn   # add them together (or choose one if you prefer)
+
+	steer_angle = deg_to_rad(combined_input * steering_limit)
+
 	var rear_wheel = transform.origin + transform.basis.z * wheel_base / 2.0
 	var front_wheel = transform.origin - transform.basis.z * wheel_base / 2.0
 	rear_wheel += velocity * delta
 	front_wheel += velocity.rotated(transform.basis.y, steer_angle) * delta
 	var new_heading = rear_wheel.direction_to(front_wheel)
-	
 	#traction
 	if not drifting and velocity.length() > slip_speed:
 		drifting = true
@@ -113,8 +118,8 @@ var last_checkpoint : Area3D
 @onready var num_cameras = $CameraPositions.get_child_count()
 
 func _ready():
-	connect_checkpoints()
 	set_physics_process(false)
+	SignalBus.connect("checkpoint_crossed", Callable(self, "_on_checkpoint_crossed"))
 	SignalBus.connect("Race_finished",Callable(self, "_on_race_finished")) # signal from race manager
 	SignalBus.connect("steering_changed", Callable(self, "_on_steering_changed")) # signal from joystic
 	SignalBus.connect("joystick_moved", Callable(self, "_on_joystick_moved")) # signal to change the car steer
@@ -148,15 +153,10 @@ func _on_brake_released():
 	is_touching_braking = false
 	
 	#signal to stop the car physics
-func _on_race_finished(car: Node):
+func _on_race_finished(_car: Node):
 	set_physics_process(false)
 	
-	#passing body to checkpoints
-func connect_checkpoints():
-	for checkpoint in get_tree().get_nodes_in_group("Checkpoints"):
-		checkpoint.connect("checkpoint_crossed", Callable(self, "_on_checkpoint_crossed"))
-	
-func _on_checkpoint_crossed(body:Node, current:Area3D, next: Area3D):
+func _on_checkpoint_crossed(body:Node, current:Area3D, _next: Area3D):
 	if body == self:
 		last_checkpoint = current
 		#print(name, " crossed checkpoint: ", current.name) debug

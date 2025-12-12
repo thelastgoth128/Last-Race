@@ -108,12 +108,8 @@ Expand track branching system with more complex paths.
 MIT License – free to use, modify, and distribute.
 
 👨‍💻 Author
-Developed by Cyrus Thindwa Final‑year Computer Science student, University of Malawi Technical Lead for AI Exam Generation at YathuApp Backend/frontend developer at Primechase Studios
+Developed by Cyrus Thindwa Final‑year Computer Science student, University of Malawi Backend/frontend developer at Primechase Studios
 
 Code
 
----
 
-This is a **full README file** — you can copy it directly into your repo as `README.md`.  
-
-👉 Do you want me to also add a **“Getting Started” tutorial section** (step‑by‑step guide
